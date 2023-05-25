@@ -3,10 +3,10 @@
 
     <!-- Navbar brand -->
     <mdb-navbar-brand><a (click)="goToHomePageLogo()" class="navbar-brand"></a></mdb-navbar-brand>
-  
+
     <!-- Collapsible content -->
     <links>
-  
+
       <!-- Links -->
       <ul *ngIf="decodedRole == userLabel || decodedRole == emptyLabel" class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -22,16 +22,16 @@
         <li class="nav-item">
           <a class="nav-link waves-light" (click)="goToDonationPage()" mdbWavesEffect>Donate</a>
         </li> -->
-        <li class="nav-item"> 
+        <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect (click)="goToContactForm()">Contact</a>
         </li>
-        <li class="nav-item"> 
-          <a class="nav-link waves-light" mdbWavesEffect>Food</a>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect (click)="goToAllFoods()">Food</a>
         </li>
-        <li class="nav-item"> 
+        <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect>Farmacy</a>
         </li>
-        <li class="nav-item"> 
+        <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect>Accessories</a>
         </li>
       </ul>
@@ -40,7 +40,7 @@
       </ul>
 
       <!-- Links -->
-  
+
       <ul *ngIf="userLoggedIn == true || userOrgLoggedIn == true" class="navbar-nav ml-auto nav-flex-icons">
         <!-- <li class="nav-item">
           <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
@@ -60,8 +60,8 @@
             <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0"></a>
         </li>
       </ul>
-    </links> 
+    </links>
     <!-- Collapsible content -->
-  
+
   </mdb-navbar>
   <!--Navbar-->

@@ -21,6 +21,7 @@ import { ManageAnimalsComponent } from './manage-animals/manage-animals.componen
 import { OrgBenefitsHistoryComponent } from './org-benefits-history/org-benefits-history.component';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AdoptionProcessComponent } from './adoption-process/adoption-process.component';
+import { FoodsListComponent } from './foods-list/foods-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -105,7 +106,11 @@ const routes: Routes = [
   {
     path: 'adoption/:id',
     component: AdoptionProcessComponent
-  }
+  },
+  {
+    path: 'foods',
+    component: FoodsListComponent
+  },
 ];
 
 @NgModule({

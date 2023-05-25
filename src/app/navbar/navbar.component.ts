@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit,OnChanges {
   emptyLabel = "";
   currentOrgValue: any;
   currentUserValue: any;
-  
+
 
   ngOnInit(): void {
     console.log('currorg ' + this.orgService.currentOrgValue);
@@ -85,7 +85,7 @@ export class NavbarComponent implements OnInit,OnChanges {
         }
     }
   }
-  
+
   signOut(){
     if (this.userService.currentUserValue != null) {
       this.userService.LogoutUser().subscribe(response => {});
@@ -123,6 +123,10 @@ export class NavbarComponent implements OnInit,OnChanges {
 
   goToHomePageLogo() {
     this.router.navigateByUrl("/home");
+  }
+
+  goToAllFoods() {
+    this.router.navigateByUrl("/foods");
   }
 
 }
