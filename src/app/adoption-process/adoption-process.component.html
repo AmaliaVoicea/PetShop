@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h1 style="margin-top:1rem;">{{currentAnimal.name}}'s adoption process</h1>
+            <div class="alert alert-danger" style="margin-top: 1rem;" *ngIf="requestResponse == false" role="alert" id="displayError">
+                There was an error. Please try again! 
+              </div>
+              <div class="alert alert-success" style="margin-top: 1rem;" *ngIf="requestResponse == true" role="alert" id="displayError">
+                Adoption was closed successfully!
+              </div>
+            <div>
+                <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+  
+                    <ng-wizard-step [title]="'New'"
+                      [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                      <div class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                        <div>
+                            <img src="./../../assets/images/gear.png">
+                        </div>
+                        <div>
+                            <h3 *ngIf="currentUserValue" style="margin-bottom: 0px !important;">
+                                The organization received your request. Please be patient until they start the process. 
+                            </h3>
+                            <h3 *ngIf="currentOrgValue" style="margin-bottom: 0px !important;">
+                                You receive a new request for adoption.
+                            </h3>
+                        </div>
+                      </div>
+                    </ng-wizard-step>
+                    
+                    <ng-wizard-step [title]="'In review'">
+                        <div class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <div>
+                                <img src="./../../assets/images/gear.png">
+                            </div>
+                            <div>
+                                <h3 *ngIf="currentUserValue" style="margin-bottom: 0px !important;">
+                                    The organization started your request. Someone will contact you as soon as possible!
+                                </h3>
+                                <h3 *ngIf="currentOrgValue" style="margin-bottom: 0px !important;">
+                                   You should contact the future adopter to set a meeting.
+                                </h3>
+                            </div>
+                          </div>
+                    </ng-wizard-step>
+                    
+                    <ng-wizard-step [title]="'Awaiting physical meeting'" 
+                      [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                      <div class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                        <div>
+                            <img src="./../../assets/images/gear.png">
+                        </div>
+                        <div>
+                            <h3 *ngIf="currentUserValue" style="margin-bottom: 0px !important;">
+                                The organization contacted you for a face to face meeting, to get to know you. After the meeting is over, they would have some requirements for animal's protection and security. Contact the organization after they are completed.
+                            </h3>
+                        </div>
+                        <h3 *ngIf="currentOrgValue" style="margin-bottom: 0px !important;">
+                            Did you had the meeting with the future adopter? If yes, then please continue to the next step.
+                         </h3>
+                      </div>
+                    </ng-wizard-step>
+                   
+                    <ng-wizard-step [title]="'Requirements met'">
+                        <div class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <div>
+                                <img src="./../../assets/images/gear.png">
+                            </div>
+                            <div>
+                                <h3 *ngIf="currentUserValue" style="margin-bottom: 0px !important;">
+                                    The organization will give their feedback if their requirements were met. Please be patient.
+                                </h3>
+                            </div>
+                            <div>
+                                <h3 *ngIf="currentOrgValue" style="margin-bottom: 0px !important;">
+                                    Did the future adopter met the requirements requested by you? If yes, please continue to next step. If the adopter didn't met the requirements and you are not convinced yet, you can still reject the request in the next step.
+                                </h3>
+                            </div>
+                        </div>
+                    </ng-wizard-step>
+                   
+                    <ng-wizard-step [title]="'Closed'">
+                        <div *ngIf="currentOrgValue && currentAdoption.statusRequest != 'closed - accepted' && currentAdoption.statusRequest != 'closed - rejected'" class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <div>
+                                <img src="./../../assets/images/gear.png">
+                            </div>
+                            <h3 style="margin-bottom: 0px !important;">
+                                Do you think the future adopter can adopt {{currentAnimal.name}} under your requirements?
+                            </h3>
+                        </div>
+                        <button *ngIf="currentOrgValue && currentAdoption.statusRequest != 'closed - accepted' && currentAdoption.statusRequest != 'closed - rejected'" mdbBtn type="button" color="unique" mdbWavesEffect (click)="requestRejected()">No</button>
+                        <button *ngIf="currentOrgValue && currentAdoption.statusRequest != 'closed - accepted' && currentAdoption.statusRequest != 'closed - rejected'" mdbBtn type="button" color="light-green" mdbWavesEffect (click)="requestAccepted()">Yes</button>
+                        <div *ngIf="currentUserValue && currentAdoption.statusRequest == 'closed - accepted'" class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <h3  style="margin-bottom: 0px !important;">
+                                Congratulations! Your adoption request was accepted. You can download the adoption contract from your profile at my adoptions.
+                            </h3>
+                        </div>
+                        <div *ngIf="currentUserValue && currentAdoption.statusRequest == 'closed - rejected'" class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <div>
+                                <img src="./../../assets/images/gear.png">
+                            </div>
+                            <h3  style="margin-bottom: 0px !important;">
+                                We are sorry, but your adoption was rejected by the organization.
+                            </h3>
+                        </div>
+                        <div *ngIf="currentOrgValue && currentAdoption.statusRequest == 'closed - accepted'" class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <h3  style="margin-bottom: 0px !important;">
+                                Congratulations! Your adoption request was accepted. You can download the adoption contract from your profile at my adoptions.
+                            </h3>
+                        </div>
+                        <div *ngIf="currentOrgValue && currentAdoption.statusRequest == 'closed - rejected'" class="alert alert-dark" role="alert" style="margin-top: 1rem;">
+                            <div>
+                                <img src="./../../assets/images/gear.png">
+                            </div>
+                            <h3  style="margin-bottom: 0px !important;">
+                                We are sorry, but your adoption was rejected by the organization.
+                            </h3>
+                        </div>
+                    </ng-wizard-step>
+                    
+                  </ng-wizard>
+            </div>
+        </div>
+      <div class="col-2"></div>
+    </div>
+  </div>

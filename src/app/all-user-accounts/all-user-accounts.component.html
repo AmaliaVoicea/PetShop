@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole == adminLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersList()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>Manage user accounts</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersOrgList()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>Manage organization accounts</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8">
+      <table class="table mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th class="nameHeader">Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of allUsers">
+            <td>
+              <div class="d-flex align-items-center">
+                <img *ngIf="user.role == userLabel"
+                    src="/assets/images/userAdmin.png"
+                    alt=""
+                    style="width: 45px; height: 45px; margin-right: 0.5rem;"
+                    class="rounded-circle"
+                    />
+                <img *ngIf="user.role == adminLabel"
+                    src="/assets/images/project-manager.png"
+                    alt=""
+                    style="width: 45px; height: 45px; margin-right: 0.5rem;"
+                    class="rounded-circle"
+                    />
+                <div class="ms-3 contentBody">
+                  <p class="fw-bold mb-1">{{user.firstName}} {{user.lastName}}</p>
+                  <p class="text-muted mb-0">{{user.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span *ngIf="user.role == userLabel" class="badge badge-success rounded-pill d-inline">{{user.role}}</span>
+              <span *ngIf="user.role == adminLabel" class="badge badge-primary rounded-pill d-inline">{{user.role}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="openDialog(user,'change role')" *ngIf="user.role == userLabel" data-toggle="modal" data-target="#exampleModalCenter">
+                Make admin
+              </button>
+              <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="openDialog(user,'change role')" *ngIf="user.role == adminLabel" data-toggle="modal" data-target="#exampleModalCenter">
+                Make user
+              </button>
+
+              <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+              <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="openDialog(user,'user')">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

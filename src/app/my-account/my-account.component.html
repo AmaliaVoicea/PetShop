@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole === userLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>My adoptions</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>My donations</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div *ngIf="decodedRole == orgUserLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>Adoptions</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+      <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+      <p>Donations</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+<div *ngIf="decodedRole == adminLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>Manage user accounts</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button">
+      <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+      <p>Manage organization accounts</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+

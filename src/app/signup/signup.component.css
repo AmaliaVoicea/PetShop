@@ -1,0 +1,30 @@
+.image-card {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    align-items: center;
+}
+
+.btn-card {
+    height: 150px !important;
+    width: 165px !important;
+    margin-bottom: 0.75rem;
+}
+
+.btn-background {
+    background-color: #DCDCDC;
+}
+
+.text-card {
+    padding-bottom: 1rem;
+    color: black;
+    align-content: center;
+}
+
+.second-text-card {
+    padding-top: 0.44rem;
+}
+
+.second-btn-margin {
+    margin-left: 0.7rem;
+    padding-left: 25px !important;
+}

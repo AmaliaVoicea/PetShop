@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+    <div class="alert alert-danger" style="margin-top: 1rem;" *ngIf="displayErrorAlert == true" role="alert" id="displayError">
+      There was an error. Please try again!
+    </div>
+    <div class = "card-wrapper">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <div *ngIf="picturesFilePaths.length > 0">
+                <img *ngFor="let name of picturesFilePaths | slice:0:1; " src = "../../assets/images/{{animalId}}/{{name}}" alt = "shoe image" >
+              </div>
+              <div *ngIf="picturesFilePaths.length == 0 && currentAnimal.type=='dog'">
+                <img src = "../../assets/images/bernese-mountain.png" alt = "shoe image" >
+              </div>
+              <div *ngIf="picturesFilePaths.length == 0 && currentAnimal.type=='cat'">
+                <img src = "../../assets/images/birman-cat.png" alt = "shoe image" >
+              </div>
+            </div>
+          </div>
+          <div *ngIf="picturesFilePaths.length > 0" class = "img-select" style="margin-left:2rem;">
+            <div *ngFor="let name of picturesFilePaths; let i = index" class = "img-item">
+              <a  data-id = "{{i}}">
+                <img src = "../../assets/images/{{animalId}}/{{name}}" style="display: inline;" alt = "shoe image"  >
+              </a>
+            </div>
+                  <!-- <div class = "img-item">
+                    <a data-id = "2">
+                      <img src = "../../assets/images/shoes_images/shoe_2.jpg" alt = "shoe image">
+                    </a>
+                  </div>
+                  <div class = "img-item">
+                    <a data-id = "3">
+                      <img src = "../../assets/images/shoes_images/shoe_3.jpg" alt = "shoe image">
+                    </a>
+                  </div>
+                  <div class = "img-item">
+                    <a data-id = "4">
+                      <img src = "../../assets/images/shoes_images/shoe_4.jpg" alt = "shoe image">
+                    </a>
+                  </div> -->
+            </div>
+          <!-- <div class = "img-select">
+            <div *ngFor="let name of picturesFilePaths; let i=index" class = "img-item">
+              <a data-id = "{{i}}">
+                <img src = "../../assets/images/{{animalId}}/{{name}}" alt = "shoe image">
+              </a>
+            </div> -->
+            <!-- <div class = "img-item">
+              <a data-id = "2">
+                <img src = "../../assets/images/shoes_images/shoe_2.jpg" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a data-id = "3">
+                <img src = "../../assets/images/shoes_images/shoe_3.jpg" alt = "shoe image">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a data-id = "4">
+                <img src = "../../assets/images/shoes_images/shoe_4.jpg" alt = "shoe image">
+              </a>
+            </div> 
+          </div> -->
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">{{currentAnimal.name}}</h2>
+          <a class="product-link" (click)="goBackToOrg()">See organization details</a>
+
+          <div class = "product-price">
+            <p>Gender: <span>{{currentAnimal.gender}}</span></p>
+            <p>Age: <span>{{currentAnimal.age}}</span></p>
+          </div>
+
+          <div class = "product-detail">
+            <h2 class="nopadding">About {{currentAnimal.name}}: </h2>
+            <p *ngIf="currentAnimal.description != null && currentAnimal.description !=''">{{currentAnimal.description}}</p>
+            <p *ngIf="currentAnimal.description == null || currentAnimal.description ==''">-</p>
+            <ul>
+              <li>Vaccinated: <span><b>{{currentAnimal.vaccinated}}</b></span></li>
+              <li>Sterilised: <span><b>{{currentAnimal.sterilised}}</b></span></li>
+              <li>Special treatment: <span>{{currentAnimal.specialTreatment}} - please check description for more detail if necessary</span></li>
+            </ul>
+          </div>
+
+          <div *ngIf="currentUserValue" class = "purchase-info">
+            <button type = "button" class = "btn" [disabled]="hasCurrentAdoption == false || detailsNotCompleteUser == true" (click)="createAdoption()">Adopt</button>
+          </div>
+          <div *ngIf="currentUserValue && (hasCurrentAdoption == false || detailsNotCompleteUser == true)">
+            <small>You cannot start an adoption process because you may not be logged in, you have incomplete data on your profile or the animal is already involved in an adoption process.</small>
+          </div>
+
+          <!-- <div class = "social-links">
+            <p>Share At: </p>
+            <a href = "#">
+              <i class = "fab fa-facebook-f"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-twitter"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+            <a href = "#">
+              <i class = "fab fa-pinterest"></i>
+            </a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../assets/js/script.js"></script>
+  </body>
+</html>

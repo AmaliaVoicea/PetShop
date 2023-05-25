@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<agm-map
+      [latitude]="lat"
+      [longitude]="lng"
+      [mapTypeId]="mapType"
+      [zoom]="8" 
+    >
+    <agm-marker 
+    *ngFor="let marker of coordinates" 
+      [latitude]="marker.lat" 
+      [longitude]="marker.long"
+      [agmFitBounds]="true"
+      >    
+</agm-marker>
+</agm-map>

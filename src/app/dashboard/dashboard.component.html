@@ -1,0 +1,180 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+          <div *ngIf="detailsNotCompleteOrg == true || detailsNotCompleteUser == true" class="row justify-content-center">
+            <div class="alert alert-warning" role="alert">
+                <img src="/assets/images/lightbulb.png" alt="Image" class="img-fluid light-bulb">
+                Your profile data is not complete. Please go to your profile and add your missing data to fully use the functionalities of this website.
+            </div>
+          </div>
+        <div *ngIf="decodedRole == userLabel" class="row" style="padding-left: 1rem;">
+          <br>
+          <h1 style="padding-top: 1rem;">Adoptions in progress</h1>
+        </div>
+        <div *ngIf="decodedRole == userLabel && adoptionsInProgressUserAltered.length > 0" class="row justify-content-center">
+          <div *ngFor="let adoption of adoptionsInProgressUserAltered" class="card card-row" style="width: 18rem; margin-bottom: 1rem;">
+            <div class="card-body">
+              <h2 class="card-title" style="margin-bottom: 8px !important;">{{adoption.animal.name}}'s adoption</h2>
+              <h5 class="card-subtitle mb-2 text-muted" style="margin-bottom: 4px !important;">Status: {{adoption.statusRequest}}</h5>
+              <p class="card-text" style="margin-bottom: 16px !important;">
+                {{adoption.animal.description}}
+              </p>
+              <a class="card-link" style="color: blue;" (click)="goToAdoptionPage(adoption.id)">See your request</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="decodedRole == userLabel && adoptionsInProgressUserAltered.length == 0" class="row justify-content-center">
+          <p>You don't have adoption requests in progress.</p>
+        </div>
+        <div *ngIf="decodedRole == userLabel" class="row" style="padding-left: 1rem;">
+          <h1>Top rated organizations</h1>
+        </div>
+        <div *ngIf="decodedRole == userLabel" class="row justify-content-center">
+          <div *ngFor="let org of topOrgs | keyvalue" class="card" style="width: 18rem; margin-right: 1rem;">
+            <img
+              src="../../assets/images/org-picture.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body" style="padding-top: 0 !important;">
+              <h2 class="card-title">{{org.key.orgName}}</h2>
+              <p class="card-text">
+                {{org.key.description}}
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: 2cm !important;">
+              <li class="list-group-item">{{org.key.email}}</li>
+              <li class="list-group-item">{{org.key.phone}}</li>
+              <li class="list-group-item">Comments: {{org.value[1]}}         Rate: {{org.value[0]}}</li>
+            </ul>
+            <div class="card-body">
+              <a class="card-link" style="color: blue;" (click)="goToOrgDetail(org.key.id)">View more</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="decodedRole == userLabel" class="row" style="padding-left: 1rem;">
+          <br>
+          <h1 style="padding-top: 1rem;">Latest animals added</h1>
+        </div>
+        <div *ngIf="decodedRole == userLabel" class="row justify-content-center">
+
+          <div *ngFor="let animal of recentAnimalsAltered" class="card" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+            <img *ngIf="picturesFilePaths.length > 0"
+              src="../../assets/images/{{animal.id}}/{{picturesFilePaths[0]}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='dog'"
+              src="../../assets/images/bernese-mountain.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='cat'"
+              src="../../assets/images/birman-cat.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h2 class="card-title">{{animal.name}}</h2>
+              <p class="card-text">
+                {{animal.description}}
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+              <li class="list-group-item">Age: {{animal.age}}</li>
+              <li class="list-group-item">
+                <p *ngIf="animal.vaccinated == true" class="text-muted mb-0">Vaccinated</p>
+                <p *ngIf="animal.sterilised == true" class="text-muted mb-0">Sterilised</p>
+                <p *ngIf="animal.specialTreatment == true" class="text-muted mb-0">Special treatment</p></li>
+            </ul>
+            <div class="card-body">
+              <a class="card-link" style="color: blue;" (click)="goToAnimalDetails(animal.id)">View more</a>
+            </div>
+          </div>
+      </div>
+        <div *ngIf="decodedRole == orgUserLabel" class="row" style="padding-left: 1rem;">
+          <br>
+          <h1 style="padding-top: 1rem;">Adoptions in progress</h1>
+        </div>
+        <div *ngIf="decodedRole == orgUserLabel" class="row justify-content-center">
+          <div *ngFor="let adoption of adoptionsInProgressAltered" class="card card-row" style="width: 18rem; margin-bottom: 1rem;">
+            <div class="card-body">
+              <h2 class="card-title" style="margin-bottom: 8px !important;">{{adoption.animal.name}}'s adoption</h2>
+              <h5 class="card-subtitle mb-2 text-muted" style="margin-bottom: 4px !important;">Status: {{adoption.statusRequest}}</h5>
+              <h5 class="card-subtitle mb-2 text-muted" style="margin-bottom: 12px !important;">Requested by: {{adoption.user.firstName}} {{adoption.user.lastName}}</h5>
+              <p class="card-text" style="margin-bottom: 16px !important;">
+                {{adoption.animal.description}}
+              </p>
+              <a class="card-link" style="color: blue;" (click)="goToAdoptionPage(adoption.id)">Manage adoption request</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="decodedRole == orgUserLabel && adoptionsInProgressAltered.length == 0" class="row justify-content-center">
+          <p>You don't have adoption requests in progress.</p>
+        </div>
+        <div *ngIf="decodedRole == orgUserLabel" class="row" style="padding-left: 1rem;">
+          <br>
+          <h1 style="padding-top: 1rem;">Your latest animals</h1>
+        </div>
+        <div *ngIf="decodedRole == orgUserLabel" class="row justify-content-center">
+
+          <div *ngFor="let animal of recentAnimalsAlteredForOrg" class="card" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+            <img *ngIf="picturesFilePaths.length > 0"
+              src="../../assets/images/{{animal.id}}/{{picturesFilePaths[0]}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='dog'"
+              src="../../assets/images/bernese-mountain.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='cat'"
+              src="../../assets/images/birman-cat.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h2 class="card-title">{{animal.name}}</h2>
+              <p class="card-text">
+                {{animal.description}}
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+              <li class="list-group-item">Age: {{animal.age}}</li>
+              <li class="list-group-item">
+                <p *ngIf="animal.vaccinated == true" class="text-muted mb-0">Vaccinated</p>
+                <p *ngIf="animal.sterilised == true" class="text-muted mb-0">Sterilised</p>
+                <p *ngIf="animal.specialTreatment == true" class="text-muted mb-0">Special treatment</p></li>
+            </ul>
+            <div class="card-body">
+              <a class="card-link" style="color: blue;" (click)="goToAnimalDetails(animal.id)">View more</a>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+  </div>
+  <footer class="page-footer font-large cyan darken-3" style="padding-left: 120px; margin-top: 50px;position:sticky;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 py-4">
+          <div class="mb-2 flex-center">
+            <a class="fb-ic" (click)="goToFacebook()">
+              <i class="fab fa-facebook-f white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a class="tw-ic" (click)="goToTwitter()">
+              <i class="fab fa-twitter white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a class="ins-ic" (click)="goToInstagram()">
+              <i class="fab fa-instagram white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer> 
+  

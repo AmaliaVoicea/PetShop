@@ -1,0 +1,156 @@
+<!-- <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> -->
+      <div class="modal-header text-center">
+        <h1 *ngIf="editFlag == false" class="modal-title w-100 font-weight-bold" style="margin-bottom: 0 !important;">Add new animal</h1>
+        <h1 *ngIf="editFlag == true" class="modal-title w-100 font-weight-bold" style="margin-bottom: 0 !important;">Update animal info</h1>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body mx-3">
+        <div class="alert alert-success" *ngIf="displaySuccessAlert == true" role="alert">
+          The animal was added successfully!
+        </div>
+        <div class="alert alert-danger" *ngIf="displayErrorAlert == true || displayUpdateErrorAlert == true" role="alert" id="displayError">
+          There was an error. Please try again!
+        </div>
+        <div class="alert alert-success" *ngIf="displayUpdateSuccessAlert == true" role="alert">
+          Animal information was updated successfully!
+        </div>
+        <form action="#" method="post" [formGroup]="addAnimalForm">
+            <div class="form-group first">
+              <input type="text" formControlName="name" id="animalName" class="form-control"
+                placeholder="Name">
+              <div *ngIf="checkInput(f['name'])">
+                <small class="text-danger" *ngIf="f['name'].errors['required']">Name is
+                  required</small>
+              </div>
+            </div>
+
+            <!-- Last name -->
+            <div class="form-group mb-4">
+                <h5>Type</h5>
+              <!-- Default inline 1-->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" formControlName="type" checked class="custom-control-input" id="dog" value="dog" mdbInput>
+                    <label class="custom-control-label" for="dog">Dog</label>
+                </div>
+                <!-- Default inline 2-->
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" formControlName="type"  class="custom-control-input" id="cat" value="cat" mdbInput>
+                    <label class="custom-control-label" for="cat">Cat</label>
+                </div>
+              <!-- <div *ngIf="checkInput(f['userLastName'])">
+                <small class="text-danger" *ngIf="fUser['userLastName'].errors['required']">Last name is
+                  required</small>
+              </div> -->
+            </div>
+
+            <div class="form-group mb-4">
+              <h5>Age</h5>
+              <input type="number" formControlName="age" id="age" class="form-control mb-4"
+                placeholder="0">
+              <div *ngIf="checkInput(f['age'])">
+                <small class="text-danger" *ngIf="f['age'].errors['required']">Age is
+                  required</small>
+              </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="form-group mb-4">
+                <h5>Gender</h5>
+              <!-- Default inline 1-->
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" formControlName="gender" checked class="custom-control-input" value="male" id="male" mdbInput>
+                <label class="custom-control-label" for="male">Male</label>
+            </div>
+            <!-- Default inline 2-->
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" formControlName="gender" class="custom-control-input" value="female" id="female" mdbInput>
+                <label class="custom-control-label" for="female">Female</label>
+            </div>
+              <!-- <div *ngIf="checkInput(fUser['userEmail'])">
+                <small class="text-danger" *ngIf="fUser['userEmail'].errors['required']">Email is required</small>
+                <small class="text-danger" *ngIf="fUser['userEmail'].errors['email']">Email must be a valid email
+                  address</small>
+              </div> -->
+            </div>
+
+            <div class="form-group mb-4">
+              <textarea type="" formControlName="description" class="form-control mb-4 md-textarea" placeholder="Description"></textarea>
+              <!-- <div *ngIf="checkInput(f['description'])">
+                <small class="text-danger" *ngIf="f['description'].errors['required']">Phone number is required</small>
+              </div> -->
+            </div>
+
+            <div class="form-group mb-4">
+              <mat-checkbox *ngIf="editFlag == false" [checked]="checkVaccinated" id="vaccinated" (change)="checkboxVaccinated($event)">Vaccinated</mat-checkbox>
+              <mat-checkbox *ngIf="editFlag == true" [checked]="dataToUpdate.vaccinated" id="vaccinated" (change)="checkboxVaccinated($event)">Vaccinated</mat-checkbox>
+              <!-- <div *ngIf="checkInput(fUser['userAddress'])">
+                <small class="text-danger" *ngIf="fUser['userAddress'].errors['required']">Address is required</small>
+              </div> -->
+            </div>
+
+            <div class="form-group mb-4">
+              <mat-checkbox *ngIf="editFlag == false" [checked]="checkSterilised" id="sterilised" (change)="checkboxSterilised($event)">Sterilised</mat-checkbox>
+              <mat-checkbox *ngIf="editFlag == true" [checked]="dataToUpdate.sterilised" id="sterilised" (change)="checkboxSterilised($event)">Sterilised</mat-checkbox>
+                <!-- <div *ngIf="checkInput(fUser['userAddress'])">
+                  <small class="text-danger" *ngIf="fUser['userAddress'].errors['required']">Address is required</small>
+                </div> -->
+              </div>
+
+              <div class="form-group mb-4">
+                <mat-checkbox *ngIf="editFlag == false" [checked]="checkSpecialTreatment" id="specialTreatment" (change)="checkboxSpecialTreatment($event)">Special treatment</mat-checkbox>
+                <mat-checkbox *ngIf="editFlag == true" [checked]="dataToUpdate.specialTreatment" id="specialTreatment" (change)="checkboxSpecialTreatment($event)">Special treatment</mat-checkbox>
+                <!-- <div *ngIf="checkInput(fUser['userAddress'])">
+                  <small class="text-danger" *ngIf="fUser['userAddress'].errors['required']">Address is required</small>
+                </div> -->
+              </div>
+
+            <!-- Password -->
+            <!-- <div class="form-group last mb-4">
+              <input type="password" formControlName="userPassword" id="userPassword" class="form-control"
+                placeholder="Password" aria-describedby="userPasswordHelpBlock">
+              <div *ngIf="checkInput(fUser['userPassword'])">
+                <small class="text-danger" *ngIf="fUser['userPassword'].errors['required']">Password is required</small>
+              </div>
+            </div> -->
+
+            <div [innerHTML]="otherErrorsDiv">
+            </div>
+
+            <!-- <button mat-flat-button *ngIf="loading==false" class="btn text-white btn-block btn-primary" type="submit" (click)="signupUser()"
+              [disabled]="!registerFormUser.valid">Sign up</button>
+              <button mat-flat-button *ngIf="loading==true" class="btn text-white btn-block btn-primary" type="submit">
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button> -->
+              <div class="wrapper">
+                <h5>Upload pictures</h5>
+                <div class="file-upload">
+                  <input
+                    type="file"
+                    name="image"
+                    ng2FileSelect
+                    [uploader]="uploader"
+                    accept="image/x-png,image/gif,image/jpeg"
+                    multiple
+                  />
+                </div>
+                <div class="greentext" *ngIf="picturesLoaded == true">Pictures uploaded successfully!</div>
+              </div>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button *ngIf="editFlag == false" mat-flat-button class="btn text-white btn-block btn-primary" [disabled]="!addAnimalForm.valid" (click)="createAnimal()">Create</button>
+        <button *ngIf="editFlag == true" mat-flat-button class="btn text-white btn-block btn-primary" [disabled]="!addAnimalForm.valid" (click)="editAnimal()">Update</button>
+        <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+          Close
+        </button>
+      </div>
+    <!-- </div>
+  </div>
+</div> -->

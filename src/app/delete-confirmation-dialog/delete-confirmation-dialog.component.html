@@ -1,0 +1,12 @@
+<h1 *ngIf="data.type =='user' || data.type == 'org'" mat-dialog-title>Delete user</h1>
+<h1 *ngIf="data.type =='change role'" mat-dialog-title>Change role</h1>
+<div *ngIf="data.type =='user' || data.type == 'org'" mat-dialog-content>
+  Are you sure you want to permanently delete this user?
+</div>
+<div *ngIf="data.type =='change role'" mat-dialog-content>
+  Are you sure you want to change the role of this user?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="manageUsers()">Yes</button>
+</div>

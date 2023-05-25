@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ng-wizard/themes/ng_wizard.min.css';
+ 
+/* Optional */
+/* If a theme other than default is used, the css file for that theme is required. */
+@import '~ng-wizard/themes/ng_wizard_theme_arrows.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_circles.min.css';
+@import '~ng-wizard/themes/ng_wizard_theme_dots.min.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Charlie Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif !important; }
+div,a,h1,h2,h3,h4,h5,h6 {font-family: Charlie Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif !important;}

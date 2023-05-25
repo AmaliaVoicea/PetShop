@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <title>Signup</title>
+</head>
+
+<body>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 order-md-2">
+          <img src="/assets/images/undraw_secure_login_pdn4.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+                <h2>Sign up to <strong>FurryFriends</strong></h2>
+              </div>
+
+              <!-- User signup -->
+              <form *ngIf="userButton == true" action="#" method="post" [formGroup]="registerFormUser">
+                <div class="form-group first">
+                  <input type="text" formControlName="userFirstName" id="userFirstName" class="form-control"
+                    placeholder="First name">
+                  <div *ngIf="checkInput(fUser['userFirstName'])">
+                    <small class="text-danger" *ngIf="fUser['userFirstName'].errors['required']">First name is
+                      required</small>
+                  </div>
+                </div>
+
+                <!-- Last name -->
+                <div class="form-group mb-4">
+                  <input type="text" formControlName="userLastName" id="userLastName" class="form-control"
+                    placeholder="Last name">
+                  <div *ngIf="checkInput(fUser['userLastName'])">
+                    <small class="text-danger" *ngIf="fUser['userLastName'].errors['required']">Last name is
+                      required</small>
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <input type="date" formControlName="userBirthDate" id="userBirthDate" class="form-control mb-4"
+                    placeholder="1997-12-19">
+                  <div *ngIf="checkInput(fUser['userBirthDate'])">
+                    <small class="text-danger" *ngIf="fUser['userBirthDate'].errors['required']">Birthdate is
+                      required</small>
+                  </div>
+                </div>
+
+                <!-- E-mail -->
+                <div class="form-group mb-4">
+                  <input type="email" formControlName="userEmail" id="userEmail" class="form-control mb-4"
+                    placeholder="E-mail">
+                  <div *ngIf="checkInput(fUser['userEmail'])">
+                    <small class="text-danger" *ngIf="fUser['userEmail'].errors['required']">Email is required</small>
+                    <small class="text-danger" *ngIf="fUser['userEmail'].errors['email']">Email must be a valid email
+                      address</small>
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <input type="text" formControlName="userPhone" class="form-control mb-4" placeholder="+40743567890">
+                  <div *ngIf="checkInput(fUser['userPhone'])">
+                    <small class="text-danger" *ngIf="fUser['userPhone'].errors['required']">Phone number is required</small>
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <input type="text" formControlName="userAddress" class="form-control mb-4"
+                    placeholder="Magheru 56, building 5D, apartment 34">
+                  <div *ngIf="checkInput(fUser['userAddress'])">
+                    <small class="text-danger" *ngIf="fUser['userAddress'].errors['required']">Address is required</small>
+                  </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group last mb-4">
+                  <input type="password" formControlName="userPassword" id="userPassword" class="form-control"
+                    placeholder="Password" aria-describedby="userPasswordHelpBlock">
+                  <div *ngIf="checkInput(fUser['userPassword'])">
+                    <small class="text-danger" *ngIf="fUser['userPassword'].errors['required']">Password is required</small>
+                  </div>
+                </div>
+
+                <div [innerHTML]="otherErrorsDiv">
+                </div>
+
+                <button mat-flat-button *ngIf="loading==false" class="btn text-white btn-block btn-primary" type="submit" (click)="signupUser()"
+                  [disabled]="!registerFormUser.valid">Sign up</button>
+                  <button mat-flat-button *ngIf="loading==true" class="btn text-white btn-block btn-primary" type="submit">
+                    <div class="spinner-border text-light" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </button>
+
+            </form>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="/assets/js/jquery-3.3.1.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>
+  

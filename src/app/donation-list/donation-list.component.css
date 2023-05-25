@@ -1,0 +1,33 @@
+.banner {
+    background-color: #deebff;
+    width: 100%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    align-items: center;
+}
+
+.banner-title {
+    font-size: xx-large;
+    padding-top: 3rem;
+    vertical-align: top;
+    text-align: center;
+    padding-right: 0.5rem;
+}
+
+.container {
+    align-items: center;
+    vertical-align: top;
+    text-align: center;
+}
+
+.elements {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.25rem;
+    padding-right: 3rem;
+    font-size: small;
+}
+
+.row {
+    margin-top: 1rem;
+}

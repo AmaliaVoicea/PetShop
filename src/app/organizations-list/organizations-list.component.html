@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+ <div class="container justify-content-center"> 
+    <!-- <div class="col-md-1"></div>
+      <div class="col-md-12"> -->
+        <div class="row justify-content-center"> 
+          <h2>Check all the organizations available on the website to see more details about them and make yourself a donor or an adopter. #AdoptDon'tShop</h2>
+        </div>
+        <div class="row justify-content-center">
+        <div class="wrap text-center">
+          <div class="search form-group">
+             <input type="text" [(ngModel)]="filterTerm" class="form-control" placeholder="What are you looking for?">
+             <button type="submit" class="searchButton">
+               <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+        <!-- <div class="row justify-content-left"> 
+            <select [(ngModel)]="selectedCity" (change)="valueSelected()">
+                <option *ngFor="let item of cities">{{ item }}</option>
+            </select>
+        </div> -->
+        <div class="row justify-content-center row-cols-1 row-cols-md-4">
+            <div *ngFor="let org of mapSort1 | keyvalue | filter: filterTerm; let i = index" class="col" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+                <div class="card h-100">
+                    <img
+                    src="/assets/images/org-picture.jpg"
+                    class="card-img-top"
+                    alt="..."
+                    />
+                    <div class="card-body">
+                        <h2 class="card-title">{{org.key.orgName}}</h2>
+                        <p class="card-text card-description" *ngIf="org.description != null">
+                            {{org.key.description}}
+                        </p>
+                        <p class="card-text" *ngIf="org.description == null">
+                            -
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+                        <li class="list-group-item"><i class="fa-solid fa-envelope"></i>     {{org.key.email}}</li>
+                        <li class="list-group-item"><i class="fa-solid fa-phone"></i>     {{org.key.phone}}</li>
+                        <li class="list-group-item">Comments: {{org.value[1]}}         Rate: {{org.value[0]}}</li>
+                    </ul>
+                    <br>
+                    <!-- <div class="card-body">
+                        <a href="#" class="card-link">View more</a>
+                    </div> -->
+                    <div class="card-footer justify-content-center">
+                        <button type="button btn-sm" style="font-size: small;" class="btn btn-info" (click)="goToOrgDetails(org.key.id)">Info</button>
+                    </div>
+                </div>
+            </div>
+          <!-- <div class="card" style="width: 18rem; margin-right: 1rem;">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/062.webp"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h2 class="card-title">Animale de companie Bucuresti</h2>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk of the
+                card's content.
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+              <li class="list-group-item">Email</li>
+              <li class="list-group-item">Phone</li>
+              <li class="list-group-item">Comments + rate</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">View more</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem; margin-right: 1rem;">
+            <img
+              src="https://mdbootstrap.com/img/new/standard/city/062.webp"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h2 class="card-title">Animale de companie Bucuresti</h2>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up the bulk of the
+                card's content.
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+              <li class="list-group-item">Email</li>
+              <li class="list-group-item">Phone</li>
+              <li class="list-group-item">Comments + rate</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">View more</a>
+            </div>  -->
+          </div>
+        <!-- </div>
+      </div> -->
+      <!-- <div class="col-md-1"></div> -->
+    <!-- </div>
+  </div> --></div>
+  <footer class="page-footer font-large cyan darken-3" style="padding-left: 120px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 py-4">
+          <div class="mb-2 flex-center">
+            <a class="fb-ic" (click)="goToFacebook()">
+              <i class="fab fa-facebook-f white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a class="tw-ic" (click)="goToTwitter()">
+              <i class="fab fa-twitter white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+            <a class="ins-ic" (click)="goToInstagram()">
+              <i class="fab fa-instagram white-text mr-md-5 mr-3 fa-2x"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  

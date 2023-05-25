@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole === userLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>My adoptions</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>My donations</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div *ngIf="userAdoptionsAltered.length == 0" style="text-align: center;">
+  <h2>You didn't adopted any animal. It is time for make a request!
+  </h2>
+</div>
+<div *ngIf="userAdoptionsAltered.length > 0">
+<div *ngFor="let adoption of userAdoptionsAltered">
+  <div style="padding-left: 35%; padding-right: 20%;">
+    <div *ngIf="decodedRole === userLabel" class="card card-container w-75" style="max-width: 100%; max-height:300px; margin-top: 1rem; margin-right: 0;">
+        <div class="row g-0">
+            <div class="col-md-3">
+            <img
+                src="../../assets/images/adoption-image.png"
+                alt="..."
+                class="img-fluid"
+                style="max-height: 300px;"
+            />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" style="padding-top: 12px !important;">
+                    <h1 class="card-title" style="margin-bottom:0.25rem;">{{adoption.animal.name}}</h1>
+                    <h5>{{adoption.animal.org.orgName}}</h5>
+                    <p class="card-text text-limit">
+                        {{adoption.animal.description}}
+                    </p>
+                    <p class="card-text text-muted">
+                        {{adoption.dateString}}
+                    </p>
+                </div>
+                <div class="col d-flex" style="align-items: flex-end; margin-bottom: 1rem;">
+                    <button class="btn btn-primary" type="submit" (click)="openContract(adoption.id)">View contract</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="decodedRole === orgUserLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>Adoptions</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+      <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+      <p>Donations</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+<div style="padding-left: 35%; padding-right: 20%;">
+  <div *ngIf="decodedRole === orgUserLabel" class="card card-container w-75" style="max-width: 100%; max-height:300px; margin-top: 1rem; margin-right: 0;">
+      <div class="row g-0">
+          <div class="col-md-3">
+          <img
+              src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.webp"
+              alt="..."
+              class="img-fluid"
+              style="max-height: 300px;"
+          />
+          </div>
+          <div class="col-md-8">
+              <div class="card-body" style="padding-top: 12px !important;">
+                  <h1 class="card-title" style="margin-bottom:0.25rem;">Animal name</h1>
+                  <h5>Adopted by</h5>
+                  <p class="card-text text-limit">
+                      Animal description
+                  </p>
+                  <p class="card-text text-muted">
+                      19.03.2022
+                  </p>
+              </div>
+              <div class="col d-flex" style="align-items: flex-end;">
+                  <button class="btn btn-primary" type="submit">View contract</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div> -->
+

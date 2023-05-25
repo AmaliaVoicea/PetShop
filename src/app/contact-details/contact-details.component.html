@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="bg-info contact4 overflow-hidden position-relative">
+    <!-- Row  -->
+    <div class="row no-gutters">
+      <div class="container">
+        <div class="col-lg-6 contact-box mb-4 mb-md-0">
+          <div class="">
+            <h1 class="title font-weight-light text-beige mt-2">Contact Us</h1>
+            <h3 class="title font-weight-light text-beige mt-2">Do you want to ask a question, give us some feedback or just report an error? Please fill in the form. We really appreciate your input and thank you for helping us making this website better.</h3>
+            <form class="mt-3" [formGroup]="contactForm">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <input class="form-control " formControlName="name" type="text" placeholder="name">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <input class="form-control " formControlName="email" type="email" placeholder="email address">
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group mt-2">
+                    <textarea class="form-control " formControlName="message" rows="3" placeholder="message"></textarea>
+                  </div>
+                </div>
+                <div class="col-lg-12 d-flex align-items-center mt-2">
+                  <button type="submit" class="btn bg-info text-inverse px-3 py-2" (click)="sendMessage()"><span> Submit</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

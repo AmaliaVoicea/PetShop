@@ -1,0 +1,67 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark grey lighten-1" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a (click)="goToHomePageLogo()" class="navbar-brand"></a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul *ngIf="decodedRole == userLabel || decodedRole == emptyLabel" class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a *ngIf="currentUserValue != null" class="nav-link waves-light" mdbWavesEffect (click)="goToHomePage()">Dashboard</a>
+          <a *ngIf="currentUserValue == null" class="nav-link waves-light" mdbWavesEffect (click)="goToHomePage()">Homepage</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link waves-light"  mdbWavesEffect (click)="goToAllOrgs()">Organizations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light"  mdbWavesEffect (click)="goToMap()">Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" (click)="goToDonationPage()" mdbWavesEffect>Donate</a>
+        </li> -->
+        <li class="nav-item"> 
+          <a class="nav-link waves-light" mdbWavesEffect (click)="goToContactForm()">Contact</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link waves-light" mdbWavesEffect>Food</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link waves-light" mdbWavesEffect>Farmacy</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link waves-light" mdbWavesEffect>Accessories</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="decodedRole == adminLabel" class="navbar-nav mr-auto">
+      </ul>
+
+      <!-- Links -->
+  
+      <ul *ngIf="userLoggedIn == true || userOrgLoggedIn == true" class="navbar-nav ml-auto nav-flex-icons">
+        <!-- <li class="nav-item">
+          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+        </li> -->
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link" mdbWavesEffect>
+            <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0">   {{username}}</a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="edit-profile">My account</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="signOut()">Log out</a>
+          </div>
+          </li>
+      </ul>
+      <ul *ngIf="userLoggedIn == false && userOrgLoggedIn == false" class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a mdbWavesEffect type="button" class="nav-link" mdbWavesEffect href="login">
+            <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+        </li>
+      </ul>
+    </links> 
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--Navbar-->

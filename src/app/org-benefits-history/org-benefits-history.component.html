@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<div class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToOrgBenefits()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>Adoptions & Donations</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToManageAnimals()">
+        <img src="/assets/images/animal-care.png" alt="Image" class="img-fluid">
+        <p>Manage animals</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+  </div>
+  <div *ngFor="let activity of orgAdoptionsDonations">
+  <div *ngIf="activity.type == 'adoption'" style="padding-left: 35%; padding-right: 20%;">
+    <div class="card card-container w-75" style="max-width: 100%; max-height:300px; margin-top: 1.5rem; margin-right: 0;">
+        <div class="row g-0">
+            <div class="col-md-3">
+            <img
+                src="../../assets/images/adoption-image.png"
+                alt="..."
+                class="img-fluid"
+                style="max-height: 300px;"
+            />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" style="padding-top: 4px !important; padding-bottom: 12px !important;">
+                    <h2 class="card-title" style="margin-bottom:0.25rem;">{{activity.animal.name}}</h2>
+                    <h5>Adopted by {{activity.user.firstName}} {{activity.user.lastName}}</h5>
+                    <p class="card-text text-limit line-clamp">
+                        Description: {{activity.animal.description}}
+                    </p>
+                    <p class="card-text text-muted">
+                        {{activity.date}}
+                    </p>
+                </div>
+                <div class="col d-flex" style="align-items: flex-end;">
+                    <button class="btn btn-primary md-small" type="submit" (click)="openContract(activity.id)">View contract</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="activity.type == 'donation'" style="padding-left: 40%; padding-right: 20%;">
+      <div style="max-width: 1000px; max-height:300px; margin-top: 1rem; margin-right: 0;">
+        <div class="row"> 
+            <div class="col-sm-6">
+        <div class="card text-center">
+            <div class="card-header">Donation</div>
+            <div class="card-body">
+              <h2 class="card-title">{{activity.user.firstName}} {{activity.user.lastName}}</h2>
+              <p class="card-text">
+                Amount donated: {{activity.amount}} USD 
+              </p>
+            </div>
+            <div class="card-footer text-muted">{{activity.date}}</div>
+          </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>

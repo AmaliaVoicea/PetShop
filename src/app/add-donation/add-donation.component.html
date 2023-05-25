@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div *ngIf="loggedIn == true">
+  <h1>If you want to help organizations save more animals and take care of the ones they already have, please add a donation using PayPal</h1>
+  <div class="container">
+    <form class="example-form inputFields" [formGroup]="donationForm">
+      <div class="form-group last mb-4">
+          <mat-form-field appearance="fill">
+              <mat-label>Amount</mat-label>
+              <input matInput required formControlName="selectAmountFormControl">
+              <mat-error *ngIf="f?.['selectAmountFormControl'].errors">
+                  This field is required
+                </mat-error>
+                <mat-hint>The amount is in USD</mat-hint>
+            </mat-form-field>
+      </div>
+      <div class="form-group last mb-4">
+          <mat-form-field appearance="fill">
+              <mat-label>Select the organization (required)</mat-label>
+              <select matNativeControl required formControlName="selectOrgFormControl">
+                <option label="--select organization --"></option>
+                <option
+                *ngFor="let org of orgsList"
+                [selected]="org.orgName === ngDropdownValue"
+                [value]="org.orgName">
+                {{ org.orgName }}
+              </option>
+              </select>
+              <mat-error *ngIf="f?.['selectOrgFormControl'].errors">
+                This field is required
+              </mat-error>
+              <mat-hint>You can choose to whom you want to donate</mat-hint>
+            </mat-form-field>
+      </div>
+      <button mat-flat-button class="btn text-white btn-block btn-primary" type="submit" (click)="setValues()" [disabled]="!donationForm.valid">Set values to donate</button>
+    </form>
+  </div>
+  <div class="paypal-container">
+    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+  </div>
+    <ng-template #contentSuccess let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Success</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>You transaction was successful. The organization will receive the money in their account.&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+</div>
+<div *ngIf="loggedIn == false" class="modal-body">
+  <div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong> You must be logged in to donate to available organizations! Please go to login form by pressing the user button.
+  </div>
+</div>

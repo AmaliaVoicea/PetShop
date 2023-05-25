@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToOrgBenefits()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>Adoptions & Donations</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToManageAnimals()">
+        <img src="/assets/images/animal-care.png" alt="Image" class="img-fluid">
+        <p>Manage animals</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-9">
+      <button class="button-59 addbutton" role="button" (click)="openModal()">Add new animal</button>
+      <div *ngIf="successfullyDeletedAnimal == true" class="alert alert-success" style="margin-top: 1rem;" role="alert">
+        Animal was deleted successfully!
+      </div>
+      <div *ngIf="temporaryObject?.length == 0" class="alert alert-warning" style="margin-top: 1rem;" role="alert">
+        You don't have any animals at the moment. You can use the option to add new animals using the above button.
+      </div>
+      <table *ngIf="temporaryObject?.length > 0" class="table mb-0 bg-white">
+          <thead class="bg-light">
+            <tr>
+              <th class="nameHeader">Name</th>
+              <th>Details</th>
+              <th>Description</th>
+              <th>Added at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let animal of temporaryObject; let i = index">
+              <td style="height:40px;">
+                <div class="d-flex align-items-center">
+                  <img *ngIf="animal.type == 'dog'"
+                      src="/assets/images/bernese-mountain.png"
+                      alt=""
+                      style="width: 45px; height: 45px"
+                      class="rounded-circle"
+                  />
+                  <img *ngIf="animal.type == 'cat'"
+                      src="/assets/images/birman-cat.png"
+                      alt=""
+                      style="width: 45px; height: 45px"
+                      class="rounded-circle"
+                  />
+                  <div class="ms-3 contentBody">
+                    <p class="fw-bold mb-0"><b>{{animal.name}}</b></p>
+                    <p class="text-muted mb-0">{{animal.type}}</p>
+                    <p class="text-muted mb-0">{{animal.gender}}, {{animal.age}} years old</p>
+                  </div>
+                </div>
+              </td>
+              <td style="height:40px;">
+                <p *ngIf="animal.vaccinated == true" class="text-muted mb-0">Vaccinated</p>
+                <p *ngIf="animal.sterilised == true" class="text-muted mb-0">Sterilised</p>
+                <p *ngIf="animal.specialTreatment == true" class="text-muted mb-0">Special treatment</p>
+                <p *ngIf="animal.specialTreatment == false && animal.vaccinated == false && animal.sterilised == false" class="fw-bold mb-0">-</p>
+              </td>
+              <td style="height:40px;">
+                <p class="text-muted mb-0 line-clamp">{{animal.description}}</p>
+              </td>
+              <td style="height:40px;">
+                <p class="text-muted mb-0 line-clamp">{{animal.addedAtString}}</p>
+              </td>
+              <td style="height:40px;">
+                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="editAnimalRow(i)">
+                  Edit
+                </button>
+                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="deleteAnimalRow(i)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+      </div>
+      <div class="col"></div>
+      </div>
+  </div>

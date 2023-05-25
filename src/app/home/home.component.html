@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <br>
+      <div class="row" style="padding-left: 1rem;">
+        <h1>Top rated organizations</h1>
+      </div>
+      <div class="row justify-content-center">
+        <div *ngFor="let org of topOrgs | keyvalue" class="card" style="width: 18rem; margin-right: 1rem;">
+          <img
+            src="../../assets/images/org-picture.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body" style="padding-top: 0 !important;">
+            <h2 class="card-title">{{org.key.orgName}}</h2>
+            <p class="card-text">
+              {{org.key.description}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush" style="border-top: none; border-bottom: 2cm !important;">
+            <li class="list-group-item">{{org.key.email}}</li>
+            <li class="list-group-item">{{org.key.phone}}</li>
+            <li class="list-group-item">Comments: {{org.value[1]}}         Rate: {{org.value[0]}}</li>
+          </ul>
+          <div class="card-body">
+            <a class="card-link" (click)="goToOrgDetail(org.key.id)">View more</a>
+          </div>
+        </div>
+        </div>
+        <div class="row" style="padding-left: 1rem;">
+          <br>
+          <h1 style="padding-top: 1rem;">Latest animals added</h1>
+        </div>
+        <div class="row justify-content-center">
+          <div *ngFor="let animal of recentAnimalsAltered" class="card" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+            <img *ngIf="picturesFilePaths.length > 0"
+              src="../../assets/images/{{animal.id}}/{{picturesFilePaths[0]}}"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='dog'"
+              src="../../assets/images/bernese-mountain.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <img *ngIf="picturesFilePaths.length == 0 && animal.type=='cat'"
+              src="../../assets/images/birman-cat.png"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h2 class="card-title">{{animal.name}}</h2>
+              <p class="card-text">
+                {{animal.description}}
+              </p>
+            </div>
+            <ul class="list-group list-group-flush" style="border-top: none; border-bottom: none;">
+              <li class="list-group-item">Age: {{animal.age}}</li>
+              <li class="list-group-item">
+                <p *ngIf="animal.vaccinated == true" class="text-muted mb-0">Vaccinated</p>
+                <p *ngIf="animal.sterilised == true" class="text-muted mb-0">Sterilised</p>
+                <p *ngIf="animal.specialTreatment == true" class="text-muted mb-0">Special treatment</p></li>
+            </ul>
+            <div class="card-body">
+              <a class="card-link" (click)="goToAnimalDetails(animal.id)">View more</a>
+            </div>
+          </div>
+      </div>
+      </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>

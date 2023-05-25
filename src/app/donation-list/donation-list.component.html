@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole === userLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>My adoptions</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>My donations</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div *ngIf="temporaryObj.length == 0" style="text-align: center;">
+  <h2>You didn't donate to an organization yet. Go to Tab Donations and help an organization!</h2>
+</div>
+<div *ngIf="temporaryObj.length > 0">
+<div style="padding-left: 40%; padding-right: 20%;">
+  <div *ngIf="decodedRole === userLabel" style="max-width: 100%; max-height:300px; margin-top: 1rem; margin-right: 0;">
+    <div *ngFor="let donation of temporaryObj">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card text-center">
+              <div class="card-header">Donation</div>
+                <div class="card-body">
+                  <h1 class="card-title">{{donation.orgName}}</h1>
+                    <p class="card-text">
+                      Amount donated: {{donation.amount}} USD
+                    </p>
+                </div>
+                <div class="card-footer text-muted"> {{donation.donationDateString}}
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div> 
+  </div>
+</div>
+</div>
+<!-- <div *ngIf="decodedRole === orgUserLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>Adoptions</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>Donations</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToEdit()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+    </a>
+    </div>
+</div>
+<div style="padding-left: 40%; padding-right: 20%;">
+  <div *ngIf="decodedRole === orgUserLabel" style="max-width: 1000px; max-height:300px; margin-top: 1rem; margin-right: 0;">
+    <div class="row"> 
+        <div class="col-sm-6">
+          <div class="card">
+    <div class="card text-center">
+        <div class="card-header">Donation</div>
+        <div class="card-body">
+          <h1 class="card-title">User name</h1>
+          <p class="card-text">
+            Amount donated: 
+          </p>
+        </div>
+        <div class="card-footer text-muted">Donation date</div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+</div> -->

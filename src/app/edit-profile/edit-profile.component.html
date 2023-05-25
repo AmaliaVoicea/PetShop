@@ -1,0 +1,429 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole === userLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyAdoptions()">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>My adoptions</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyDonations()">
+      <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+      <p>My donations</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+<div *ngIf="decodedRole == adminLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersList()">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>Manage user accounts</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersOrgList()">
+      <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+      <p>Manage organization accounts</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div *ngIf="decodedRole === userLabel || decodedRole === adminLabel" class="edit-container container">
+  <div *ngIf="successfullyUpdatedInfoUser == true" class="alert alert-success" role="alert">
+    User info was updated successfully!
+  </div>
+  <div *ngIf="successfullyUpdatedPasswordUser == true" class="alert alert-success" role="alert">
+    User password was updated successfully!
+  </div>
+  <div *ngIf="wrongUpdatedInfoUser == true || wrongUpdatedPasswordUser == true" class="alert alert-danger" role="alert">
+    The data couldn't be updated. Please try again!
+  </div>
+  <div class="row flex-lg-nowrap">
+
+    <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+                    <div class="mx-auto" style="width: 140px;">
+                      <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px">
+                        <img src="/assets/images/edit-profile.png">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h3 class="pt-sm-2 pb-1 mb-0 text-nowrap"><b>{{user.firstName}} {{user.lastName}}</b></h3>
+                      <p class="mb-0">@{{user.firstName.toLowerCase()}}.{{user.lastName.toLowerCase()}}</p>
+                      <!-- <div class="mt-2">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span>Change Photo</span>
+                      </button>
+                    </div> -->
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <span class="badge badge-secondary">{{decodedRole}}</span>
+                      <div class="text-muted"><small>{{userCreatedAtDateString}}</small></div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form class="form" novalidate="" [formGroup]="editUserDetails" (ngSubmit)="editProfile()">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" type="text" name="firstName" formControlName="firstName"
+                                  placeholder="-" value="{{user.firstName}}">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" type="text" name="lastName" formControlName="lastName"
+                                  placeholder="-" value="{{user.lastName}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" name="email" formControlName="email"
+                                  placeholder="-" value="{{user.email}}">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" name="phone" formControlName="phone"
+                                  placeholder="-" value="{{user.phone}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Card ID</label>
+                                <input class="form-control" type="text" name="CNP" formControlName="CNP" placeholder="-"
+                                  value="{{user.cnp}}">
+                              </div>
+                               <div *ngIf="f?.['CNP'].errors">
+                                     <small class="text-danger" style="margin: 0px" *ngIf="submitFlag && f?.['CNP'].errors?.['required']">Mandatory field: Card ID</small>
+                               </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Birthdate</label>
+                                <input class="form-control" type="text" name="birthdate" formControlName="birthdate"
+                                  placeholder="-" value={{userBirthDateString}}>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" rows="3" name="address" formControlName="address"
+                                  placeholder="-" value="{{user.address}}"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                      <form class="form" novalidate="" [formGroup]="editUserPassword" (ngSubmit)="editPassword()">
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Change Password</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Current Password</label>
+                                <input class="form-control" name="currentPassword" formControlName="currentPassword"
+                                  type="password" placeholder="••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>New Password</label>
+                                <input class="form-control" type="password" formControlName="newPassword"
+                                  name="newPassword" placeholder="••••••">
+                                  <div *ngIf="g?.['newPassword'].errors">
+                                    <small class="text-danger" style="margin: 0px" *ngIf="submitFlagNewUser">Passwords don't match</small>
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                <input class="form-control" name="confirmNewPassword" type="password"
+                                  formControlName="confirmNewPassword" placeholder=" ••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                          </div>
+                        </div>
+                        </div>
+                      </form>
+                        <div class="row">
+                          <div class="col d-flex justify-content-end">
+                            <button class="btn btn-primary" style="margin-right: 0.5rem;" type="submit" (click)="editPassword()">Change password</button>
+                            <button class="btn btn-primary" type="submit" (click)="editProfile()">Save Changes</button>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-3 mb-3">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="decodedRole === orgUserLabel" class="banner">
+  <h1 class="banner-title">MY ACCOUNT</h1>
+  <div class="container">
+    <a mdbWavesEffect class="elements" type="button" (click)="goToOrgBenefits()">
+      <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+      <p>Adoptions & Donations</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToManageAnimals()">
+      <img src="/assets/images/animal-care.png" alt="Image" class="img-fluid">
+      <p>Manage animals</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+      <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+      <p>My profile</p>
+    </a>
+    <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+      <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+      <p>Logout</p>
+    </a>
+  </div>
+</div>
+
+<div *ngIf="decodedRole === orgUserLabel" class="edit-container container">
+  <div *ngIf="successfullyUpdatedOrgInfo == true" class="alert alert-success" role="alert">
+    Organization info was updated successfully!
+  </div>
+  <div *ngIf="successfullyUpdatedOrgPass == true" class="alert alert-success" role="alert">
+    Organization password was updated successfully!
+  </div>
+  <div *ngIf="wrongUpdatedOrgInfo == true || wrongUpdatedOrgPass == true" class="alert alert-danger" role="alert">
+    The data couldn't be updated. Please try again!
+  </div>
+  <div class="row flex-lg-nowrap">
+
+    <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+                    <div class="mx-auto" style="width: 140px;">
+                      <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px">
+                        <img src="/assets/images/edit-profile.png">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h3 class="pt-sm-2 pb-1 mb-0 text-nowrap"><b>{{org.orgName}}</b></h3>
+                      <p class="mb-0">@{{org.orgName | pipeRemoveWhitespaces}}</p>
+                      <!-- <div class="mt-2">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span>Change Photo</span>
+                      </button>
+                    </div> -->
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <span class="badge badge-secondary">{{decodedRole}}</span>
+                      <div class="text-muted"><small>{{orgCreatedDateString}}</small></div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form class="form" novalidate="" [formGroup]="editOrgDetails" (ngSubmit)="editProfile()">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Organization Name</label>
+                                <input class="form-control" type="text" name="orgName" formControlName="orgName"
+                                  placeholder="-" value="{{org.orgName}}">
+                              </div>
+                            </div>
+                            <!-- <div class="col">
+                              <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" type="text" name="lastName" formControlName="lastName"
+                                  placeholder="-" value="{{user.lastName}}">
+                              </div>
+                            </div> -->
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="text" name="email" formControlName="email"
+                                  placeholder="-" value="{{org.email}}">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" name="phone" formControlName="phone"
+                                  placeholder="-" value="{{org.phone}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>PayPal Account Email Address</label>
+                                <input class="form-control" type="text" name="payPalAccount" formControlName="payPalAccount" placeholder="-"
+                                  value="{{org.payPalAccount}}">
+                              </div>
+                               <div *ngIf="f1?.['payPalAccount'].errors">
+                                     <small class="text-danger" style="margin: 0px" *ngIf="submitFlag && f1?.['payPalAccount'].errors?.['required']">Mandatory field: PayPal Account Email Address</small>
+                               </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Start date</label>
+                                <input class="form-control" type="text" name="startDate" formControlName="startDate"
+                                  placeholder="-" value="{orgStartedDateString}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label>Address</label>
+                                <textarea class="form-control" rows="3" name="address" formControlName="address"
+                                  placeholder="-" value="{{org.address}}"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="3" name="description" formControlName="description"
+                                  placeholder="-" value="{{org.description}}"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </form>
+                      <form class="form" novalidate="" [formGroup]="editOrgPassword" (ngSubmit)="editPassword()">
+                      <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                          <div class="mb-2"><b>Change Password</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Current Password</label>
+                                <input class="form-control" name="currentPassword" formControlName="currentPassword"
+                                  type="password" placeholder="••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>New Password</label>
+                                <input class="form-control" type="password" formControlName="newPassword"
+                                  name="newPassword" placeholder="••••••">
+                                  <div *ngIf="g1?.['newPassword'].errors">
+                                    <small class="text-danger" style="margin: 0px" *ngIf="submitFlagNewOrg">Passwords don't match</small>
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                <input class="form-control" name="confirmNewPassword" type="password"
+                                  formControlName="confirmNewPassword" placeholder=" ••••••">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                          </div>
+                        </div>
+                        </div>
+                      </form>
+                        <div class="row">
+                          <div class="col d-flex justify-content-end">
+                            <button class="btn btn-primary" style="margin-right: 0.5rem;" type="submit" (click)="editPassword()">Change password</button>
+                            <button class="btn btn-primary" type="submit" (click)="editProfile()">Save Changes</button>
+                          </div>
+                        </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-3 mb-3">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

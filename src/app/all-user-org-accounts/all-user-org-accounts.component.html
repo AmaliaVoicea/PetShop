@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div *ngIf="decodedRole == adminLabel" class="banner">
+    <h1 class="banner-title">MY ACCOUNT</h1>
+    <div class="container">
+      <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersList()">
+        <img src="/assets/images/house.png" alt="Image" class="img-fluid">
+        <p>Manage user accounts</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToAllUsersOrgList()">
+        <img src="/assets/images/solidarity.png" alt="Image" class="img-fluid">
+        <p>Manage organization accounts</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="goToMyProfile()">
+        <img src="/assets/images/profile.png" alt="Image" class="img-fluid">
+        <p>My profile</p>
+      </a>
+      <a mdbWavesEffect class="elements" type="button" (click)="signOut()">
+        <img src="/assets/images/logout.png" alt="Image" class="img-fluid">
+        <p>Logout</p>
+      </a>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8">
+      <table class="table mb-0 bg-white">
+        <thead class="bg-light">
+          <tr>
+            <th class="nameHeader">Name</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orgUser of allUserOrgs">
+            <td>
+              <div class="d-flex align-items-center">
+                <img
+                    src="/assets/images/userAdmin.png"
+                    alt=""
+                    style="width: 45px; height: 45px; margin-right: 0.5rem;"
+                    class="rounded-circle"
+                    />
+                <div class="ms-3 contentBody">
+                  <p class="fw-bold mb-1">{{orgUser.orgName}}</p>
+                  <p class="text-muted mb-0">{{orgUser.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="badge badge-success rounded-pill d-inline">{{orgUser.role}}</span>
+            </td>
+            <td>
+              <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="openDialog(orgUser,'org')">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
