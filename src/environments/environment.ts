@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'https://localhost:44341/',
-  endpoint: 'https://localhost:44341/',
+  apiEndpoint: 'https://0a61f2b5-742c-4b94-b6f8-ce2753c81555.mock.pstmn.io',
+  endpoint: 'https://0a61f2b5-742c-4b94-b6f8-ce2753c81555.mock.pstmn.io',
   isUserDataKey: 'userData',
   isOrgDataKey: 'orgData'
 };
