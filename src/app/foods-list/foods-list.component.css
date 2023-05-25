@@ -1,3 +1,59 @@
+/* Add custom styles for product cards */
+.product-card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card-img {
+  object-fit: cover;
+  height: 200px;
+}
+
+.product-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.product-card-description {
+  height: 4.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.product-card-footer {
+  background-color: #f2f2f2;
+  border-top: none;
+  text-align: center;
+}
+
+.product-card-property {
+
+}
+
+.product-card-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #00B4CC;
+}
+
+.product-card-category {
+  color: #666;
+}
+
+.product-card-instructions,
+.product-card-animal,
+.product-card-age {
+  color: #333;
+  font-weight: bold;
+}
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 @media (min-width: 1200px) {
@@ -39,7 +95,7 @@ body{
     position: relative;
     display: flex;
   }
-  
+
   .searchTerm {
     width: 100%;
     border: 3px solid #00B4CC;
@@ -50,11 +106,11 @@ body{
     outline: none;
     color: #9DBFAF;
   }
-  
+
   .searchTerm:focus{
     color: #00B4CC;
   }
-  
+
   .searchButton {
     width: 40px;
     height: 36px;
@@ -66,8 +122,25 @@ body{
     cursor: pointer;
     font-size: 20px;
   }
-  
+
   /*Resize the wrap to see the search bar change!*/
   .wrap{
     width: 30%;
   }
+
+  /* Add custom styles for product name and description */
+.product-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.product-card-description {
+  height: 4.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: #666;
+}
