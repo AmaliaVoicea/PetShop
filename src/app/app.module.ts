@@ -101,7 +101,7 @@ const ngWizardConfig: NgWizardConfig = {
     AdoptionProcessComponent,
     AdoptionContractFormComponent,
     FoodsListComponent,
-    FarmacyProductsComponent
+    FarmacyProductsComponent,
     AccessoryListComponent,
     AccessoryDetailsComponent
   ],
