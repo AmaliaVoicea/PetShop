@@ -129,4 +129,8 @@ export class NavbarComponent implements OnInit,OnChanges {
     this.router.navigateByUrl("/foods");
   }
 
+  goToAllAccessories() {
+    this.router.navigateByUrl("/accessories");
+  }
+
 }

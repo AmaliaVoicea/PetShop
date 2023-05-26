@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container justify-content-center">
+  <div class="row justify-content-center">
+    <div class="wrap text-center">
+      <div class="search form-group">
+        <input type="text" [(ngModel)]="filterTerm" class="form-control searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center row-cols-1 row-cols-md-4">
+    <div *ngFor="let accessory of mapSort1 | keyvalue | filter: filterTerm; let i = index" class="col" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+      <div class="card h-100 product-card">
+        <img src="{{accessory.key.image_url}}" class="card-img-top product-card-img" alt="...">
+        <div class="card-body">
+          <h2 class="card-title product-card-title">{{ accessory.key.product_title }}</h2>
+          <p class="card-text" *ngIf="accessory.key.description == null">-</p>
+          <div class="product-card-property">
+            <p class="product-card-price">Price: {{ accessory.key.price }}</p>
+            <p class="product-card-category"><b>Category:</b> {{ accessory.key.category }}</p>
+            <p class="product-card-instructions">{{ accessory.key.description }}</p>
+            <p class="product-card-animal"><b>Animal:</b> {{ accessory.key.animal }}</p>
+            <p class="product-card-age"><b>Age:</b> {{ accessory.key.age }}</p>
+          </div>
+        </div>
+        <div class="card-footer justify-content-center product-card-footer">
+          <button type="button" class="btn btn-info btn-sm" (click)="goToAccessoryDetails(accessory.key.id.toString())">Info</button>
+          &nbsp;
+          <button type="button" class="btn btn-info btn-sm" (click)="goToAccessoryDetails(accessory.key.id.toString())">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer font-large cyan darken-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 py-4">
+        <div class="mb-2 flex-center">
+          <a class="fb-ic" (click)="goToFacebook()">
+            <i class="fab fa-facebook-f white-text mr-md-5 mr-3 fa-2x"></i>
+          </a>
+          <a class="tw-ic" (click)="goToTwitter()">
+            <i class="fab fa-twitter white-text mr-md-5 mr-3 fa-2x"></i>
+          </a>
+          <a class="ins-ic" (click)="goToInstagram()">
+            <i class="fab fa-instagram white-text mr-md-5 mr-3 fa-2x"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

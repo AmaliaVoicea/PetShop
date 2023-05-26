@@ -18,6 +18,7 @@ import { UploadFileService } from '../services/upload-file.service';
   templateUrl: './org-details.component.html',
   styleUrls: ['./org-details.component.css']
 })
+
 export class OrgDetailsComponent implements OnInit {
 
   orgId: string;
@@ -80,11 +81,6 @@ export class OrgDetailsComponent implements OnInit {
       let tempo: any;
       console.log(res);
       this.allFeedbacks = res;
-      // tempo = res.filter(obj => obj.userId == this.userService.currentUserValue?.id && obj.rating != 0);
-      // if (Object.keys(tempo).length > 1) {
-      //   tempo = tempo.sort((a, b) => a.addedAt < b.addedAt ? -1 : a.addedAt > b.addedAt ? 1 : 0);
-      //   calculateFeedback+=
-      // }
       res.forEach((elem) => {
         if(elem.comment != null) {
           temp = Object.assign({}, elem);
