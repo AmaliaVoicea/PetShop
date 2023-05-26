@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="container justify-content-center">
+  <div class="row justify-content-center">
+    <div class="wrap text-center">
+      <div class="search form-group">
+        <input type="text" [(ngModel)]="filterTerm" class="form-control searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center row-cols-1 row-cols-md-4">
+    <div *ngFor="let fproduct of farmacyProducts; let i = index" class="col" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
+      <div class="card h-100 product-card">
+        <img src="/assets/images/org-picture.jpg" class="card-img-top product-card-img" alt="...">
+        <div class="card-body">
+          <h2 class="card-title product-card-title">{{ fproduct.description }}</h2>
+          <p class="card-text" *ngIf="fproduct.description == null">-</p>
+          <div class="product-card-property">
+            <p class="product-card-price">Price: {{ fproduct.price }}</p>
+            <p class="product-card-category">Category: {{ fproduct.category }}</p>
+            <p class="product-card-instructions">Instructions: {{ fproduct.instructions }}</p>
+            <p class="product-card-animal">Animal: {{ fproduct.animal }}</p>
+            <p class="product-card-age">Age: {{ fproduct.age }}</p>
+          </div>
+        </div>
+        <div class="card-footer justify-content-center product-card-footer">
+          <button type="button" class="btn btn-info btn-sm" (click)="goToFarmacyProductsDetails(fproduct.id.toString())">Info</button>
+          &nbsp;
+          <!-- <button type="button" class="btn btn-info btn-sm" (click)="goToFoodDetails(food.id.toString())">Add to cart</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

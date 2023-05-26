@@ -60,6 +60,8 @@ import { AdoptionContractFormComponent } from './adoption-contract-form/adoption
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FoodsListComponent } from './foods-list/foods-list.component';
 import { FoodService } from './services/food.service';
+import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.component';
+import { FarmacyService } from './services/farmacy.service';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -96,6 +98,7 @@ const ngWizardConfig: NgWizardConfig = {
     AdoptionProcessComponent,
     AdoptionContractFormComponent,
     FoodsListComponent,
+    FarmacyProductsComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -145,6 +148,7 @@ const ngWizardConfig: NgWizardConfig = {
     FeedbackService,
     AdoptionsService,
     FoodService,
+    FarmacyService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

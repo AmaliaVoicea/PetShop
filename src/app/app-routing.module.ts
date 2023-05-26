@@ -22,6 +22,7 @@ import { OrgBenefitsHistoryComponent } from './org-benefits-history/org-benefits
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AdoptionProcessComponent } from './adoption-process/adoption-process.component';
 import { FoodsListComponent } from './foods-list/foods-list.component';
+import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -111,6 +112,10 @@ const routes: Routes = [
     path: 'foods',
     component: FoodsListComponent
   },
+  {
+    path: 'farmacy',
+    component: FarmacyProductsComponent
+  }
 ];
 
 @NgModule({
