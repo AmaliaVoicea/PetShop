@@ -60,6 +60,8 @@ import { AdoptionContractFormComponent } from './adoption-contract-form/adoption
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FoodsListComponent } from './foods-list/foods-list.component';
 import { FoodService } from './services/food.service';
+import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.component';
+import { FarmacyService } from './services/farmacy.service';
 import { AccessoryListComponent } from './accessory-list/accessory-list.component';
 import { AccessoryService } from './services/accessory.service';
 import { AccessoryDetailsComponent } from './accessory-details/accessory-details.component';
@@ -99,6 +101,7 @@ const ngWizardConfig: NgWizardConfig = {
     AdoptionProcessComponent,
     AdoptionContractFormComponent,
     FoodsListComponent,
+    FarmacyProductsComponent
     AccessoryListComponent,
     AccessoryDetailsComponent
   ],
@@ -150,6 +153,7 @@ const ngWizardConfig: NgWizardConfig = {
     FeedbackService,
     AdoptionsService,
     FoodService,
+    FarmacyService,
     AccessoryService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
