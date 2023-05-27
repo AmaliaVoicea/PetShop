@@ -24,6 +24,7 @@ import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AdoptionProcessComponent } from './adoption-process/adoption-process.component';
 import { FoodsListComponent } from './foods-list/foods-list.component';
 import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.component';
+import { FarmacyProductsDetailsComponent } from './farmacy-products-details/farmacy-products-details.component';
 import { AccessoryListComponent } from './accessory-list/accessory-list.component';
 import { AccessoryDetailsComponent } from './accessory-details/accessory-details.component';
 
@@ -122,6 +123,10 @@ const routes: Routes = [
   {
     path: 'farmacy',
     component: FarmacyProductsComponent
+  },
+  {
+    path: 'farmacy/:id',
+    component: FarmacyProductsDetailsComponent
   },
   {
     path: 'accessories',
