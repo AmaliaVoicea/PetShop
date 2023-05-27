@@ -8,6 +8,7 @@ export class FarmacyProduct{
     public animal: Date;
     public age: string;
     public image_url: string;
+    public long_description: string;
 
     constructor(init: Partial<FarmacyProduct>) {
         Object.assign(this, init);

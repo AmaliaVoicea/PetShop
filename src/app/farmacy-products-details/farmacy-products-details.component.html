@@ -12,6 +12,7 @@
             </div>
         </div>
         <div class="col-md-7">
+          <h1 style="color: #000066;"><b>{{currentFarmacyProduct.description}}</b></h1>
             <div class="price" style="margin-bottom: 0.5rem; color: #3399FF; font-size: medium;"><span class="me-2">
                     <b> {{currentFarmacyProduct.price}}</b></span></div>
             <div class="d-flex flex-row">
@@ -26,8 +27,8 @@
                 <!-- <span>{{ratingsCount}} ratings &amp; {{commentsCount}} reviews</span> -->
             </div>
             <div class="d-flex flex-row light-weight" style="margin-top: 1rem; font-size:medium;">
-                <p>{{currentFarmacyProduct.description}}</p>
-            </div>
+              <p>{{currentFarmacyProduct.long_description}}</p>
+          </div>
             <div class="d-flex align-items-center mt-4 offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
                     class="ms-1 fw-bold"><b>Category</b> {{currentFarmacyProduct.category}}</span></div>
             <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span

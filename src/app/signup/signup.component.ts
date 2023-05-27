@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit {
   public downloadedPk = false;
 
   signupUser(){
+    console.log("date",  this.fUser['userBirthDate'].value)
     this.loading = true;
     if (this.registerFormUser.invalid) {
       return;
