@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   topOrgs: Map<Org, Array<number>>;
   noOfComms: Map<Org, number>;
 
-  constructor(private feedbackService: FeedbackService, private uploadService: UploadFileService, private router: Router, private userService: UserService, private orgService: OrgService, private adoptionService: AdoptionsService, private animalService: AnimalService) { 
+  constructor(private feedbackService: FeedbackService, private uploadService: UploadFileService, private router: Router, private userService: UserService, private orgService: OrgService, private adoptionService: AdoptionsService, private animalService: AnimalService) {
   }
 
   ngOnInit(): void {
@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
                 calculateFeedback += tempo[0].rating;
                 ratingsCount++;
                 userIdsList.push(elem.userId);
-              } 
+              }
               else {
                 calculateFeedback += elem.rating;
                 ratingsCount++;
@@ -130,7 +130,7 @@ export class DashboardComponent implements OnInit {
           this.adoptionsInProgressUserAltered.push(temp);
         })
       });
-      this.animalService.getLatest().subscribe(res => {
+      this.animalService.getLatestAnimalsForOrg().subscribe(res => {
         let temp: any;
         console.log(res);
         this.recentAnimals = res;
