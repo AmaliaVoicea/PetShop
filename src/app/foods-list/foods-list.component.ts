@@ -37,7 +37,7 @@ export class FoodsListComponent implements OnInit {
   }
 
   goToFoodDetails(foodId: string) {
-    this.router.navigateByUrl("/food/details/" + foodId);
+    this.router.navigateByUrl("/foods/" + foodId);
   }
 
 }

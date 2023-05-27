@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active"><img class="img-thumbnail w-100 d-block"
+                            src="{{currentfood.image_url}}" alt="Slide Image" loading="lazy"></div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h1 style="color: #000066;"><b>{{currentfood.description}}</b></h1>
+            <div class="price" style="margin-bottom: 0.5rem; color: #3399FF; font-size: medium;"><span class="me-2">
+                    <b> {{currentfood.price}}</b></span></div>
+            <div class="d-flex flex-row">
+                <div class="icons me-2">
+                    <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                        </span>
+                    </ng-template>
+                    <!-- <ngb-rating [(rate)]="accessoryRating" [starTemplate]="t" [readonly]="readonly" [max]="5"></ngb-rating> -->
+                </div>
+                <!-- <span>{{ratingsCount}} ratings &amp; {{commentsCount}} reviews</span> -->
+            </div>
+            <div class="d-flex flex-row light-weight" style="margin-top: 1rem; font-size:medium;">
+                <p>{{currentfood.description}}</p>
+            </div>
+            <div class="d-flex align-items-center mt-4 offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                    class="ms-1 fw-bold"><b>Category</b> {{currentfood.category}}</span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                    class="ms-1 fw-bold"><b>Animal</b> {{currentfood.animal}}</span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                    class="ms-1 fw-bold"><b>Color</b> {{currentfood.color}}</span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                class="ms-1 fw-bold"><b>Age</b> {{currentfood.age}}</span></div>
+            <div class="d-flex align-items-center mt-5 delivery"><i class="fa-solid fa-magnifying-glass" style="margin-right: 10px;"></i> <span
+                    class="ms-1">{{currentfood.instructions}}</span>
+            </div>
+            <hr><br><br><br>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 0.5rem;">
+    </div>
+    <br>
+    <div class="row justify-content-center" style="margin-left: 0.5rem; margin-top: 0.5rem;"><br>
+        <h2 style="margin-bottom: 4px !important; color: #3399FF; padding-left: 15px;">Please leave us some feedback!
+        </h2>
+    </div>
+</div>
