@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active"><img class="img-thumbnail w-100 d-block"
+                            src="{{currentFarmacyProduct.image_url}}" alt="Slide Image" loading="lazy"></div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="price" style="margin-bottom: 0.5rem; color: #3399FF; font-size: medium;"><span class="me-2">
+                    <b> {{currentFarmacyProduct.price}}</b></span></div>
+            <div class="d-flex flex-row">
+                <div class="icons me-2">
+                    <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                        </span>
+                    </ng-template>
+                    <!-- <ngb-rating [(rate)]="accessoryRating" [starTemplate]="t" [readonly]="readonly" [max]="5"></ngb-rating> -->
+                </div>
+                <!-- <span>{{ratingsCount}} ratings &amp; {{commentsCount}} reviews</span> -->
+            </div>
+            <div class="d-flex flex-row light-weight" style="margin-top: 1rem; font-size:medium;">
+                <p>{{currentFarmacyProduct.description}}</p>
+            </div>
+            <div class="d-flex align-items-center mt-4 offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                    class="ms-1 fw-bold"><b>Category</b> {{currentFarmacyProduct.category}}</span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                    class="ms-1 fw-bold"><b>Animal</b> {{currentFarmacyProduct.animal}}</span></div>
+            <div class="d-flex align-items-center offers mb-1"><i class="fa fa-check-square-o mt-1" style="margin-right: 10px;"></i><span
+                class="ms-1 fw-bold"><b>Age</b> {{currentFarmacyProduct.age}}</span></div>
+            <div class="d-flex align-items-center mt-5 delivery"><i class="fa-solid fa-magnifying-glass" style="margin-right: 10px;"></i> <span
+                    class="ms-1">{{currentFarmacyProduct.instructions}}</span>
+            </div>
+            <hr><br><br><br>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 0.5rem;">
+    </div>
+    <br>
+    <div class="row justify-content-center" style="margin-left: 0.5rem; margin-top: 0.5rem;"><br>
+        <h2 style="margin-bottom: 4px !important; color: #3399FF; padding-left: 15px;">Please leave us some feedback!
+        </h2>
+    </div>
+    <div class="row d-flex justify-content-center" style="margin-left: 0.5rem; margin-top: 0.5rem;">
+        <div class="col-10 d-flex justify-content-center">
+            <form *ngIf="currentUser != null" [formGroup]="rateForm">
+                <div class="text-dark">
+                    <div class="row d-flex">
+                        <div class="col-lg-7" style="float: left; height: 275px; width: 725px;">
+                            <div class="card">
+                                <div class="card-body p-4"
+                                    style="padding-bottom: 0.5rem !important; padding-left: 1rem !important; padding-top: 1rem !important;">
+                                    <div class="d-flex flex-start w-100">
+                                        <img class="rounded-circle shadow-1-strong me-3"
+                                            src="../../assets/images/userAdmin.png" alt="avatar" width="65"
+                                            height="65" />
+                                        <div class="w-100" style="margin-left: 0.5rem;">
+                                            <h1
+                                                style="margin: 0 !important; padding-bottom: 0.3rem !important; padding-left: 0.5rem !important;">
+                                                Add a comment or rating</h1>
+                                            <div style="padding-bottom: 0.75rem;"><ngb-rating
+                                                    style="padding-left: 0.5rem; font-size: 1.5rem;"
+                                                    formControlName="rating" [(rate)]="currentRate"
+                                                    [max]="5"></ngb-rating></div>
+
+                                            <div class="form-outline">
+                                                <textarea class="form-control" formControlName="comment"
+                                                    id="textAreaExample" rows="3"
+                                                    placeholder="Type a comment..."></textarea>
+                                                <small class="text-danger" *ngIf="displayErrorMessage == true">There was
+                                                    an error. Please try again!</small>
+                                            </div>
+                                            <div class="d-flex mt-3" style="float: right;">
+                                                <button type="button" class="btn btn-danger btn-md"
+                                                    (click)="postFeedback()">
+                                                    Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-8 col-lg-5 justify-content-center"
+                style="padding-left: 0rem !important; margin-bottom: 1rem; ">
+                <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+                    <div class="card-body p-4">
+                        <div *ngIf="allFeedbacksWithComments.length > 0">
+                            <div *ngFor="let feedback of allFeedbacksWithComments; let last = last" class="card mb-4">
+                                <div class="card-body">
+                                    <p>{{feedback.comment}}</p>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <img src="../../assets/images/comment-user.png" alt="avatar" width="25"
+                                                height="25" />
+                                            <p class="small mb-0 ms-2" style="padding-left: 0.3rem;">
+                                                {{feedback.user.firstName}} {{feedback.user.lastName}}</p>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center justify-content-center">
+                                            <ngb-rating *ngIf="feedback.rating != 0 && feedback.rating != null"
+                                                [(rate)]="feedback.rating" [readonly]="readonly" [max]="5"></ngb-rating>
+                                            <i class="far fa-clock mx-2 fa-xs text-black"
+                                                style="margin-top: -0.16rem;"></i>
+                                            <p class="small text-muted mb-0">{{feedback.createdDateString}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="allFeedbacksWithComments.length == 0">
+                            <p>There is no comment yet for this product. You can add one to help other buyers!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

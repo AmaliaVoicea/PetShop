@@ -61,6 +61,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FoodsListComponent } from './foods-list/foods-list.component';
 import { FoodService } from './services/food.service';
 import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.component';
+import { FarmacyProductsDetailsComponent } from './farmacy-products-details/farmacy-products-details.component';
 import { FarmacyService } from './services/farmacy.service';
 import { AccessoryListComponent } from './accessory-list/accessory-list.component';
 import { AccessoryService } from './services/accessory.service';
@@ -102,6 +103,7 @@ const ngWizardConfig: NgWizardConfig = {
     AdoptionContractFormComponent,
     FoodsListComponent,
     FarmacyProductsComponent,
+    FarmacyProductsDetailsComponent,
     AccessoryListComponent,
     AccessoryDetailsComponent
   ],

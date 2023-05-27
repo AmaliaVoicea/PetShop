@@ -10,7 +10,7 @@
 }
 
 .product-card-img {
-  object-fit: cover;
+  object-fit: contain;
   height: 200px;
 }
 
@@ -52,7 +52,6 @@
 .product-card-animal,
 .product-card-age {
   color: #333;
-  font-weight: bold;
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
