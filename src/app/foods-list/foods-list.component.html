@@ -14,7 +14,7 @@
   <div class="row justify-content-center row-cols-1 row-cols-md-4">
     <div *ngFor="let food of foodProducts; let i = index" class="col" style="width: 18rem; margin-right: 1rem; margin-bottom: 1rem;">
       <div class="card h-100 product-card">
-        <img src="/assets/images/org-picture.jpg" class="card-img-top product-card-img" alt="...">
+        <img src="{{food.image_url}}" class="card-img-top product-card-img" alt="...">
         <div class="card-body">
           <h2 class="card-title product-card-title">{{ food.description }}</h2>
           <p class="card-text" *ngIf="food.description == null">-</p>

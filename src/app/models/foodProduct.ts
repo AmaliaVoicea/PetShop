@@ -8,6 +8,7 @@ export class FoodProduct{
     public animal: Date;
     public age: string;
     public waist: string;
+    public image_url: string;
 
     constructor(init: Partial<FoodProduct>) {
         Object.assign(this, init);

@@ -56,6 +56,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { AdoptionProcessComponent } from './adoption-process/adoption-process.component';
 import { NgWizardModule, NgWizardConfig, THEME } from 'ng-wizard';
+import { FoodDetailsComponent } from './food-details/food-details.component';
 import { AdoptionContractFormComponent } from './adoption-contract-form/adoption-contract-form.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FoodsListComponent } from './foods-list/foods-list.component';
@@ -80,6 +81,7 @@ const ngWizardConfig: NgWizardConfig = {
     NavbarComponent,
     DashboardComponent,
     MyAccountComponent,
+    FoodDetailsComponent,
     HomeComponent,
     EditProfileComponent,
     AdoptionListComponent,

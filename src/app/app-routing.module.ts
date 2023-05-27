@@ -10,6 +10,7 @@ import { AllUserAccountsComponent } from './all-user-accounts/all-user-accounts.
 import { AllUserOrgAccountsComponent } from './all-user-org-accounts/all-user-org-accounts.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FoodDetailsComponent } from './food-details/food-details.component';
 import { DonationListComponent } from './donation-list/donation-list.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { HomeComponent } from './home/home.component';
@@ -114,6 +115,10 @@ const routes: Routes = [
   {
     path: 'foods',
     component: FoodsListComponent
+  },
+  {
+    path: 'foods/:id',
+    component: FoodDetailsComponent
   },
   {
     path: 'farmacy',

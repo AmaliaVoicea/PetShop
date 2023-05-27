@@ -147,7 +147,7 @@ generateHeader(token: string){
     return this.http.get<Org>(environment.apiEndpoint + "ong/name/" + orgName);
   }
 
-  public getOrgById(orgId: string): Observable<Org> {
-    return this.http.get<Org>(environment.apiEndpoint + "ong/" + orgId);
+  public getFoodById(foodId: string): Observable<FoodProduct> {
+    return this.http.get<FoodProduct>(environment.apiEndpoint + "food/" + foodId);
   }
 }
