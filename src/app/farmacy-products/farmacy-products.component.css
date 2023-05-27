@@ -44,6 +44,11 @@
   color: #00B4CC;
 }
 
+.product-card-img:hover{
+  transition: ease-in-out;
+  transform: scale(1.1);
+}
+
 .product-card-category {
   color: #666;
 }

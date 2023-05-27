@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Router } from '@angular/router';
 import { OrgService } from '../services/org.service';
 import { UserService } from '../services/user.service';
+import { ShoppingCartService } from '../services/shoppingCart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +10,17 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit,OnChanges {
-  constructor(public userService: UserService, public orgService: OrgService, private router: Router) {
+
+  public totalItem: number = 0;
+
+  constructor(public userService: UserService, public orgService: OrgService, private router: Router, private cartService: ShoppingCartService) {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.ngOnInit();
+    this.cartService.getProducts().subscribe(res=>{
+      this.totalItem = res.length;
+      console.log('item no '+res.length);
+    })
   }
   userLoggedIn: boolean = false;
   userOrgLoggedIn: boolean = false;
@@ -135,6 +143,10 @@ export class NavbarComponent implements OnInit,OnChanges {
 
   goToAllAccessories() {
     this.router.navigateByUrl("/accessories");
+  }
+
+  goToShoppingCart(){
+    this.router.navigateByUrl("/cart");
   }
 
 }

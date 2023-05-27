@@ -27,6 +27,7 @@ import { FarmacyProductsComponent } from './farmacy-products/farmacy-products.co
 import { FarmacyProductsDetailsComponent } from './farmacy-products-details/farmacy-products-details.component';
 import { AccessoryListComponent } from './accessory-list/accessory-list.component';
 import { AccessoryDetailsComponent } from './accessory-details/accessory-details.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -136,6 +137,10 @@ const routes: Routes = [
     path: 'accessories/:id',
     component: AccessoryDetailsComponent
   },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
+  }
 ];
 
 @NgModule({
