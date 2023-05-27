@@ -18,13 +18,14 @@ export class FarmacyProductsComponent implements OnInit {
 
   ngOnInit(): void {
     let myMap = new Map<FarmacyProduct, number>();
-	  this.farmacyService.getAllFarmacyProducts().subscribe( farmacy =>{
-      this.farmacyProducts = farmacy;
-      for(var i = 0; i< this.farmacyProducts.length; i++){
-          myMap.set(this.farmacyProducts[i],i);
-      }
-      this.mapSort2 = myMap;
-      console.log("farmacy: ", farmacy)
+	  this.farmacyService.getAllFarmacyProducts().subscribe( farmacyProducts => {
+      this.farmacyProducts = farmacyProducts;
+      // for(var i = 0; i< this.farmacyProducts.length; i++){
+      //     myMap.set(this.farmacyProducts[i],i);
+      // }
+      // this.mapSort2 = myMap;
+      console.log("farmacy: ", farmacyProducts)
+
     });
 
     // let myMap = new Map<FarmacyProduct, Array<number>>();

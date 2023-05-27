@@ -9,6 +9,7 @@ export class FoodProduct{
     public age: string;
     public waist: string;
     public image_url: string;
+    public long_description: string;
 
     constructor(init: Partial<FoodProduct>) {
         Object.assign(this, init);

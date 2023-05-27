@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Animal } from '../models/animal';
+import { Product } from '../models/product';
 
 @Injectable()
 export class AnimalService {
@@ -49,10 +50,17 @@ export class AnimalService {
     }));
   }
 
-  public getLatest(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(environment.apiEndpoint + "animals/all/latest").pipe(map( animals => {
-      console.log(animals);
-      return animals;
+  public getLatestProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.apiEndpoint + "latestProducts").pipe(map( products => {
+      console.log(products);
+      return products;
+    }));
+  }
+
+  public getTopRatedProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(environment.apiEndpoint + "topRatedProducts").pipe(map( products => {
+      console.log(products);
+      return products;
     }));
   }
 

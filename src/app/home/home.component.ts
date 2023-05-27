@@ -7,6 +7,7 @@ import { AnimalService } from '../services/animal.service';
 import { Animal } from '../models/animal';
 import { UploadFileService } from '../services/upload-file.service';
 import { Adoption } from '../models/adoption';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
   orgs: Org[];
   topOrgs: Map<Org, Array<number>>;
   noOfComms: Map<Org, number>;
-  recentAnimals: Animal[] = [];
+  recentProducts: Product[] = [];
+  topRatedProducts: Product[] = [];
   recentAnimalsAltered: any[] = [];
   picturesFilePaths: string[];
   adoptionsInProgress: Adoption[] = [];
@@ -52,7 +54,7 @@ export class HomeComponent implements OnInit {
                 calculateFeedback += tempo[0].rating;
                 ratingsCount++;
                 userIdsList.push(elem.userId);
-              } 
+              }
               else {
                 calculateFeedback += elem.rating;
                 ratingsCount++;
@@ -70,21 +72,19 @@ export class HomeComponent implements OnInit {
           }
       })
       })
-    });  
-    this.animalService.getLatest().subscribe(res => {
+    });
+    this.animalService.getLatestProducts().subscribe(res => {
       let temp: any;
       console.log(res);
-      this.recentAnimals = res;
-      res.forEach((elem) => {
-        temp = Object.assign({}, elem);
-        this.recentAnimalsAltered.push(temp);
-        this.uploadService.getImageNames(elem.id).subscribe(res => {
-          this.picturesFilePaths = res;
-          console.log(res);
-        })
-      })
+      this.recentProducts = res;
     });
-    
+
+    this.animalService.getTopRatedProducts().subscribe(res => {
+      let temp: any;
+      console.log(res);
+      this.topRatedProducts = res;
+    });
+
   }
 
   goToFacebook() {
@@ -103,7 +103,11 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl("org/details/" + id);
   }
 
-  goToAnimalDetails(animalId: string) {
-    this.router.navigateByUrl("/animal/details/" + animalId);
+  goToProductDetails(productId: string, category: string) {
+    if(category == 'accessories'){
+      this.router.navigateByUrl("accessories/details/" + productId);
+    }else{
+      this.router.navigateByUrl(`${category}/` + productId);
+    }
   }
 }
