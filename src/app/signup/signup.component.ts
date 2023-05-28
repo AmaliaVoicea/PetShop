@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
       address: this.fUser['userAddress'].value,
       password: this.fUser['userPassword'].value
     }).subscribe(response => {
-      this.router.navigateByUrl("/dashboard");
+      this.router.navigateByUrl("/home");
       this.loading = false;
     })
   }

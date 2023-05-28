@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
     return input.invalid && (input.dirty || input.touched);
   }
 
-  login() {
+  async login() {
     this.otherErrorsDiv = null;
-    this.loginForm.markAllAsTouched(); 
+    this.loginForm.markAllAsTouched();
     let shouldReturn = false;
     if (this.loginForm.invalid) {
       shouldReturn = true;
@@ -46,22 +46,37 @@ export class LoginComponent implements OnInit {
     if(shouldReturn) return;
 
     if(!this.isAdmin && !this.checkboxValue){
+      console.log("intra aici ");
+      // this.userService.LoginUser(<User>{
+      //   email: this.f['email'].value,
+      //   password: this.f['password'].value
+      // }).subscribe({next: loginResponse => {
+      //   console.log("loginResponse ", loginResponse);
+      //   if (loginResponse.role == "0") {
+      //     this.router.navigateByUrl("/edit-profile");
+      //   } else {
+      //     this.router.navigateByUrl("/dashboard");
+      //   }
+      // },
+      // error: error => {
+      //   this.loginFailed = true;
+      //   this.errors = error;
+      //   setTimeout(()=>{this.loginFailed = false;}, 3000);
+      // }});
+
       this.userService.LoginUser(<User>{
         email: this.f['email'].value,
         password: this.f['password'].value
-      }).subscribe({next: loginResponse => {
-        console.log(loginResponse);
-        if (loginResponse.role == "0") {
-          this.router.navigateByUrl("/edit-profile");
-        } else {
-          this.router.navigateByUrl("/dashboard");
-        }
+      }).subscribe(res =>{
+
+        console.log("login response", res);
+        this.router.navigateByUrl("/home");
       },
-      error: error => {
-        this.loginFailed = true;
-        this.errors = error;
-        setTimeout(()=>{this.loginFailed = false;}, 3000);
-      }});
+      err =>{
+        console.error("API error:", err);
+
+      })
+
     }
     else if (!this.isAdmin && this.checkboxValue){
       this.orgService.LoginOrgUser(<Org>{
@@ -71,7 +86,7 @@ export class LoginComponent implements OnInit {
         console.log(loginResponse);
         this.router.navigateByUrl("/dashboard");
       },
-      error: error => { 
+      error: error => {
         this.loginFailed = true;
         this.errors = error;
         setTimeout(()=>{this.loginFailed = false;}, 3000);
