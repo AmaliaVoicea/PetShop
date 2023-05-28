@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccessoryProduct } from '../models/accessoryProduct';
 import { AccessoryService } from '../services/accessory.service';
 import { Router } from '@angular/router';
+import { ShoppingCartService } from '../services/shoppingCart.service';
 
 @Component({
   selector: 'app-accessory-list',
@@ -14,7 +15,7 @@ export class AccessoryListComponent implements OnInit {
   filterTerm: string = "";
   mapSort1: Map<AccessoryProduct, number>;
 
-  constructor(private accessoryService: AccessoryService, private router: Router) { }
+  constructor(private accessoryService: AccessoryService, private router: Router, private cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     let myMap = new Map<AccessoryProduct, number>();
@@ -25,6 +26,10 @@ export class AccessoryListComponent implements OnInit {
       }
       this.mapSort1 = myMap;
       console.log("accessories: ", accessories)
+
+      this.accessoryProducts.forEach((a: any) =>{
+        Object.assign(a, {quantity: 1, total: a.price});
+      });
     });
   }
 
@@ -42,6 +47,10 @@ export class AccessoryListComponent implements OnInit {
 
   goToAccessoryDetails(accessoryId: string) {
     this.router.navigateByUrl("/accessories/" + accessoryId);
+  }
+
+  addtocart(item: any){
+    this.cartService.addToCart(item);
   }
 
 }

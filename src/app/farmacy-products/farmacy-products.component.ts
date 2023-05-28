@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FarmacyProduct } from '../models/farmacyProduct';
 import { FarmacyService } from '../services/farmacy.service';
+import { ShoppingCartService } from '../services/shoppingCart.service';
 
 @Component({
   selector: 'fproducts',
@@ -14,29 +15,31 @@ export class FarmacyProductsComponent implements OnInit {
   filterTerm: string = "";
   mapSort2: Map<FarmacyProduct, number>;
 
-  constructor(private farmacyService: FarmacyService, private router: Router) { }
+  constructor(private farmacyService: FarmacyService, private router: Router, private cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     let myMap = new Map<FarmacyProduct, number>();
 	  this.farmacyService.getAllFarmacyProducts().subscribe( farmacyProducts => {
       this.farmacyProducts = farmacyProducts;
-      // for(var i = 0; i< this.farmacyProducts.length; i++){
-      //     myMap.set(this.farmacyProducts[i],i);
-      // }
-      // this.mapSort2 = myMap;
+      for(var i = 0; i< this.farmacyProducts.length; i++){
+          myMap.set(this.farmacyProducts[i],i);
+      }
+      this.mapSort2 = myMap;
       console.log("farmacy: ", farmacyProducts)
 
     });
 
-    // let myMap = new Map<FarmacyProduct, Array<number>>();
-	  // this.farmacyService.getAllFarmacyProducts().subscribe( farmacy =>{
-    //   this.farmacyProducts = farmacy;
-    //   console.log("farmacy: ",farmacy)
-    // });
+    this.farmacyProducts.forEach((a: any) =>{
+      Object.assign(a, {quantity: 1, total: a.price});
+    });
   }
 
   goToFarmacyProductsDetails(farmacyProductId: string) {
     this.router.navigateByUrl("/farmacy/" + farmacyProductId);
+  }
+
+  addtocart(item: any){
+    this.cartService.addToCart(item);
   }
 
 }

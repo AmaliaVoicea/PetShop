@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FoodProduct } from '../models/foodProduct';
 import { FoodService } from '../services/food.service';
+import { ShoppingCartService } from '../services/shoppingCart.service';
 
 @Component({
   selector: 'foods-list',
@@ -14,13 +15,17 @@ export class FoodsListComponent implements OnInit {
   filterTerm: string = "";
   mapSort1: Map<FoodProduct, number[]>;
 
-  constructor(private foodService: FoodService, private router: Router) { }
+  constructor(private foodService: FoodService, private router: Router, private cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     let myMap = new Map<FoodProduct, Array<number>>();
 	  this.foodService.getAllFoodProducts().subscribe( foods =>{
       this.foodProducts = foods;
       console.log("foods: ",foods)
+
+      this.foodProducts.forEach((a: any) =>{
+        Object.assign(a, {quantity: 1, total: a.price});
+      });
     });
   }
 
@@ -38,6 +43,10 @@ export class FoodsListComponent implements OnInit {
 
   goToFoodDetails(foodId: string) {
     this.router.navigateByUrl("/foods/" + foodId);
+  }
+
+  addtocart(item: any){
+    this.cartService.addToCart(item);
   }
 
 }

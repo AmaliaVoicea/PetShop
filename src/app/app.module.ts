@@ -67,6 +67,8 @@ import { FarmacyService } from './services/farmacy.service';
 import { AccessoryListComponent } from './accessory-list/accessory-list.component';
 import { AccessoryService } from './services/accessory.service';
 import { AccessoryDetailsComponent } from './accessory-details/accessory-details.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartService } from './services/shoppingCart.service';
 
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -107,7 +109,8 @@ const ngWizardConfig: NgWizardConfig = {
     FarmacyProductsComponent,
     FarmacyProductsDetailsComponent,
     AccessoryListComponent,
-    AccessoryDetailsComponent
+    AccessoryDetailsComponent,
+    ShoppingCartComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -159,6 +162,7 @@ const ngWizardConfig: NgWizardConfig = {
     FoodService,
     FarmacyService,
     AccessoryService,
+    ShoppingCartService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
