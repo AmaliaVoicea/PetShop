@@ -39,40 +39,41 @@
       <ul *ngIf="decodedRole == adminLabel" class="navbar-nav">
       </ul>
 
-
-        <button routerLink="cart" class="btn" style="margin-left: 1340px;" (click)="goToShoppingCart()">
+      <div style="margin-left: auto; margin-right: 0; display:flex; flex-direction: row;">
+        <button routerLink="cart" class="btn" (click)="goToShoppingCart()">
           <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
           <div style="font-size: 10px; background-color: #9999ff;" class="badge">{{totalItem}}</div>
         </button>
 
 
-        <!-- asa apare si cosul si butonul, versiunea de backup: -->
-        <!-- <a class="nav-link waves-light mr-auto" mdbWavesEffect (click)="goToAllAccessories()">
-          <i style="font-size: 20px; background-color: grey;" class="fas fa-cart-plus"></i>
-          <div style="font-size: 10px; background-color: grey;" class="badge bg-danger">{{totalItem}}</div>
-        </a> -->
+          <!-- asa apare si cosul si butonul, versiunea de backup: -->
+          <!-- <a class="nav-link waves-light mr-auto" mdbWavesEffect (click)="goToAllAccessories()">
+            <i style="font-size: 20px; background-color: grey;" class="fas fa-cart-plus"></i>
+            <div style="font-size: 10px; background-color: grey;" class="badge bg-danger">{{totalItem}}</div>
+          </a> -->
 
-      <!-- Links -->
+        <!-- Links -->
 
-      <ul *ngIf="userLoggedIn == true || userOrgLoggedIn == true" class="navbar-nav ml-auto nav-flex-icons">
-        <!-- <li class="nav-item">
-          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
-        </li> -->
-        <li class="nav-item avatar dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link" mdbWavesEffect>
-            <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0">   {{username}}</a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="my-account">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="signOut()">Log out</a>
-          </div>
+        <ul *ngIf="userLoggedIn == true || userOrgLoggedIn == true" class="navbar-nav ml-auto nav-flex-icons">
+          <!-- <li class="nav-item">
+            <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+          </li> -->
+          <li class="nav-item avatar dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link" mdbWavesEffect>
+              <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0">   {{username}}</a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="my-account">My account</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect (click)="signOut()">Log out</a>
+            </div>
+            </li>
+        </ul>
+        <ul *ngIf="userLoggedIn == false && userOrgLoggedIn == false" class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+            <a mdbWavesEffect type="button" class="nav-link" mdbWavesEffect href="login">
+              <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0"></a>
           </li>
-      </ul>
-      <ul *ngIf="userLoggedIn == false && userOrgLoggedIn == false" class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a mdbWavesEffect type="button" class="nav-link" mdbWavesEffect href="login">
-            <img src="/assets/images/user.png" alt="" class="img-fluid rounded-circle z-depth-0"></a>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </links>
     <!-- Collapsible content -->
 
