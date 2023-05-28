@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from '../services/shoppingCart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'cart',
@@ -12,7 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   public products : any = [];
   public grandTotal : number = 0;
 
-  constructor(private cartService: ShoppingCartService, private router: Router) { }
+  constructor(private cartService: ShoppingCartService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.cartService.getProducts().subscribe(res=>{
@@ -23,10 +24,12 @@ export class ShoppingCartComponent implements OnInit {
 
   removeItem(item: any){
     this.cartService.removeCartItem(item);
+    this.toastr.error("The item was removed from the cart!");
   }
 
   emptyCart(){
     this.cartService.removeAllCart();
+    this.toastr.error("All the products were removed from the cart!");
   }
 
 }

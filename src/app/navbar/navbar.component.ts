@@ -17,10 +17,6 @@ export class NavbarComponent implements OnInit,OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.ngOnInit();
-    this.cartService.getProducts().subscribe(res=>{
-      this.totalItem = res.length;
-      console.log('item no '+res.length);
-    })
   }
   userLoggedIn: boolean = false;
   userOrgLoggedIn: boolean = false;
@@ -35,6 +31,9 @@ export class NavbarComponent implements OnInit,OnChanges {
 
 
   ngOnInit(): void {
+    this.cartService.getProducts().subscribe(res=>{
+      this.totalItem = res.length;
+    })
     console.log('currorg ' + this.orgService.currentOrgValue);
     console.log('currUser ' + this.userService.currentUserValue);
     if(this.userService.currentUserValue != null){

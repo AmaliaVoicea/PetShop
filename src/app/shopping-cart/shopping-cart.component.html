@@ -8,30 +8,28 @@
                 <thead>
                     <tr>
                         <th>Product no.</th>
-                        <th>Product name</th>
-                        <th>Product description</th>
-                        <th>Product price</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Price</th>
                         <th>Quantity</th>
-                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of products; let i = index">
                         <td>{{i+1}}</td>
-                        <td>{{item.name}}</td>
-                        <th style="width: 25%;">{{item.description}}</th>
-                        <th style="width: 12%;">{{item.price}}</th>
-                        <th style="width: 12%;">{{item.quantity}}</th>
-                        <th style="width: 12%;">{{item.total}}</th>
+                        <td><img src="{{item.image_url}}" style="width: 60%;"></td>
+                        <td style="width: 25%;">{{item.description}}</td>
+                        <td style="width: 12%;">{{item.price}}</td>
+                        <td style="width: 12%;">{{item.quantity}}</td>
                         <td>
-                            <button class="btn btn-danger" (click)="removeItem(item)">Delete</button>
+                            <button class="btn" style="background-color: black; color: white;" (click)="removeItem(item)">Delete</button>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="4"></td>
-                        <td><button class="btn btn-danger" (click)="emptyCart()">Empty cart</button></td>
-                        <td><button class="btn btn-primary" routerLink="/home">Home page</button></td>
-                        <td><button class="btn btn-success">Checkout</button></td>
+                        <td><button class="btn" style="background-color: black; color: white;" (click)="emptyCart()">Empty cart</button></td>
+                        <td><button class="btn" style="background-color: #9999ff; color: white;" routerLink="/home">Home page</button></td>
+                        <td><button class="btn" style="background-color: #00b3b3; color: white;">Checkout</button></td>
                         <td><strong>Grand Total: {{grandTotal}} lei</strong></td>
                     </tr>
                 </tbody>

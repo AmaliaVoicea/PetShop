@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FarmacyProduct } from '../models/farmacyProduct';
 import { FarmacyService } from '../services/farmacy.service';
 import { ShoppingCartService } from '../services/shoppingCart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'fproducts',
@@ -15,7 +16,7 @@ export class FarmacyProductsComponent implements OnInit {
   filterTerm: string = "";
   mapSort2: Map<FarmacyProduct, number>;
 
-  constructor(private farmacyService: FarmacyService, private router: Router, private cartService: ShoppingCartService) { }
+  constructor(private farmacyService: FarmacyService, private router: Router, private cartService: ShoppingCartService, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
     let myMap = new Map<FarmacyProduct, number>();
@@ -27,10 +28,10 @@ export class FarmacyProductsComponent implements OnInit {
       this.mapSort2 = myMap;
       console.log("farmacy: ", farmacyProducts)
 
-    });
+      this.farmacyProducts.forEach((a: any) =>{
+        Object.assign(a, {quantity: 1, total: a.price});
+      });
 
-    this.farmacyProducts.forEach((a: any) =>{
-      Object.assign(a, {quantity: 1, total: a.price});
     });
   }
 
@@ -40,6 +41,7 @@ export class FarmacyProductsComponent implements OnInit {
 
   addtocart(item: any){
     this.cartService.addToCart(item);
+    this.toastr.success("Your item was added to the cart!");
   }
 
 }

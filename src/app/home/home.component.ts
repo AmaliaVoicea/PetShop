@@ -8,6 +8,9 @@ import { Animal } from '../models/animal';
 import { UploadFileService } from '../services/upload-file.service';
 import { Adoption } from '../models/adoption';
 import { Product } from '../models/product';
+import { ShoppingCartService } from '../services/shoppingCart.service';
+import { FarmacyProduct } from '../models/farmacyProduct';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +29,13 @@ export class HomeComponent implements OnInit {
   adoptionsInProgress: Adoption[] = [];
   adoptionsInProgressAltered: any[] = [];
   filterTerm: string = "";
+  farmacyProducts: FarmacyProduct[];
 
-	constructor(private uploadService: UploadFileService, private animalService: AnimalService, private orgService: OrgService, private router: Router, private feedbackService: FeedbackService) { }
+	constructor(private uploadService: UploadFileService, private animalService: AnimalService, private orgService: OrgService, private router: Router, private feedbackService: FeedbackService, private cartService: ShoppingCartService, private toastr: ToastrService) { }
 
 	ngOnInit() {
+
+
     let myMap = new Map<Org, Array<number>>();
 	  this.orgService.getAllOrgs().subscribe(r=>{
       this.orgs = r;
@@ -73,6 +79,7 @@ export class HomeComponent implements OnInit {
       })
       })
     });
+    
     this.animalService.getLatestProducts().subscribe(res => {
       let temp: any;
       console.log(res);
@@ -87,27 +94,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  goToFacebook() {
-    window.location.href = "https://www.facebook.com/";
-  }
-
-  goToInstagram() {
-    window.location.href = "https://www.instagram.com/";
-  }
-
-  goToTwitter() {
-    window.location.href = "https://twitter.com/";
-  }
-
-  goToOrgDetail(id: string) {
-    this.router.navigateByUrl("org/details/" + id);
+  addtocart(item: any){
+    this.cartService.addToCart(item);
+    this.toastr.success("Your item was added to the cart!");
   }
 
   goToProductDetails(productId: string, category: string) {
-    if(category == 'accessories'){
-      this.router.navigateByUrl("accessories/details/" + productId);
-    }else{
-      this.router.navigateByUrl(`${category}/` + productId);
-    }
+    this.router.navigateByUrl(`${category}/` + productId);
   }
 }

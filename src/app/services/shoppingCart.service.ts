@@ -14,20 +14,6 @@ export class ShoppingCartService {
   public cartItemList : any =[]
   public productsList = new BehaviorSubject<any>([]);
 
-  // public currentUserSubject: BehaviorSubject<UserLoginResponse>;
-  // public currentUser: Observable<UserLoginResponse>;
-  // public isAdmin: boolean = false;
-  
-  // header = new HttpHeaders({
-  //   'Content-Type': 'application/json'
-  // });
-  // privateHeader ={
-  //     headers : new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       Authorization: 'Bearer ' + localStorage.getItem('token'),
-  //     }),
-  // };
-
   constructor(private http: HttpClient) {
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FoodProduct } from '../models/foodProduct';
 import { FoodService } from '../services/food.service';
 import { ShoppingCartService } from '../services/shoppingCart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'foods-list',
@@ -15,7 +16,7 @@ export class FoodsListComponent implements OnInit {
   filterTerm: string = "";
   mapSort1: Map<FoodProduct, number[]>;
 
-  constructor(private foodService: FoodService, private router: Router, private cartService: ShoppingCartService) { }
+  constructor(private foodService: FoodService, private router: Router, private cartService: ShoppingCartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let myMap = new Map<FoodProduct, Array<number>>();
@@ -29,24 +30,13 @@ export class FoodsListComponent implements OnInit {
     });
   }
 
-  goToFacebook() {
-    window.location.href = "https://www.facebook.com/";
-  }
-
-  goToInstagram() {
-    window.location.href = "https://www.instagram.com/";
-  }
-
-  goToTwitter() {
-    window.location.href = "https://twitter.com/";
-  }
-
   goToFoodDetails(foodId: string) {
     this.router.navigateByUrl("/foods/" + foodId);
   }
 
   addtocart(item: any){
     this.cartService.addToCart(item);
+    this.toastr.success("Your item was added to the cart!");
   }
 
 }
